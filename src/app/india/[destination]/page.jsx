@@ -4,7 +4,7 @@ import { resolveSlug } from "@/lib/slugHistory";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import TourCategoryPage from "@/components/tours/TourCategoryPage";
-import { getDestination, getDestinationParams } from "@/data/destinations";
+import { findDestinationSlugByName, getDestination, getDestinationParams } from "@/data/destinations";
 import { getDestinationParamsFromDb, getDestinationRecords } from "@/lib/destinations";
 import { getAllPackages } from "@/lib/packages";
 import JsonLd from "@/components/common/JsonLd";
@@ -43,7 +43,12 @@ export default async function IndiaDestinationPage({ params }) {
   const renamed = await resolveSlug("destination", destination);
   if (renamed) permanentRedirect(`/india/${renamed}`);
 
-  const result = getDestination("india", destination, await getDestinationRecords(), await getAllPackages());
+  const records = await getDestinationRecords();
+
+  const ownPage = findDestinationSlugByName("india", destination, records);
+  if (ownPage) permanentRedirect(`/india/${ownPage}`);
+
+  const result = getDestination("india", destination, records, await getAllPackages());
 
   if (!result) {
     notFound();

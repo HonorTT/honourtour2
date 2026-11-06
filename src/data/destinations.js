@@ -1131,6 +1131,21 @@ function synthesizeDestination(parent, slug, catalogue = packages) {
   return { raw, config: buildDestinationConfig(raw) };
 }
 
+/**
+ * The admin's own page for a place, when this address is not it. The menu builds
+ * "/india/sikkim-tour-packages" from the name, but the admin can give the record
+ * any slug. Without this the address gets a generic page of its own, and edits
+ * to the real record never show up on it.
+ */
+export function findDestinationSlugByName(parent, slug, records = []) {
+  const isOwnPage = (item) => item.parent === parent && item.slug === slug;
+  if (records.some(isOwnPage) || rawDestinations.some(isOwnPage)) return null;
+
+  const wanted = slug.replace(/-tour-packages$/, "");
+  const match = records.find((item) => item.parent === parent && toSlug(item.name) === wanted);
+  return match?.slug ?? null;
+}
+
 export function getDestination(parent, slug, records, catalogue) {
   // `records` comes from the destination collection; this file's own list is
   // the fallback, and anything in neither is synthesized as before.

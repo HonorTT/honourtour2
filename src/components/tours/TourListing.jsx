@@ -244,8 +244,10 @@ export default function TourListing({ packages, badgeTag, filters = {}, wideCard
         </div>
       )}
 
+      {/* content-start: the filter column is tall, and without this a short list
+          stretches its rows to match, pulling the cards to 700px. */}
       <div
-        className={`grid grid-cols-1 gap-4 sm:grid-cols-2${wideCards ? "" : " lg:grid-cols-3"}`}
+        className={`grid grid-cols-1 content-start gap-4 sm:grid-cols-2${wideCards ? "" : " lg:grid-cols-3"}`}
       >
         {filteredPackages.length === 0 && (
           <div className="col-span-full rounded-[14px] border border-dashed border-[#D1D5DB] bg-white p-8 text-center text-[13px] text-[#667085]">

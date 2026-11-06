@@ -298,17 +298,19 @@ export default async function PackageDetailPage({ params }) {
                   </div>
 
                   {/* RATING */}
-                  <div className="mt-3 flex items-center gap-2">
-                    <div className="flex text-[#ff9800]">
-                      {[1, 2, 3, 4, 5].map((star) => (
-                        <Star key={star} size={13} fill="currentColor" />
-                      ))}
+                  {tour.rating && tour.reviews ? (
+                    <div className="mt-3 flex items-center gap-2">
+                      <div className="flex text-[#ff9800]">
+                        {[1, 2, 3, 4, 5].map((star) => (
+                          <Star key={star} size={13} fill="currentColor" />
+                        ))}
+                      </div>
+
+                      <strong className="text-[12px]">{tour.rating}</strong>
+
+                      <span className="text-[12px] text-[#64748B]">({tour.reviews} Reviews)</span>
                     </div>
-
-                    <strong className="text-[12px]">{tour.rating}</strong>
-
-                    <span className="text-[12px] text-[#64748B]">({tour.reviews} Reviews)</span>
-                  </div>
+                  ) : null}
 
                   <p className="mt-4 max-w-[750px] text-[14px] leading-[1.65] text-[#475569]">
                     {tour.description}

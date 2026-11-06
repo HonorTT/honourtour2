@@ -595,18 +595,18 @@ export default function TourCategoryPage({ config }) {
             <div className="flex items-center gap-3">
               <MessageSquare size={17} className="text-[#0F4C81]" />
 
-              <div>
+              <div className="min-w-0">
                 <p className="text-[12px] text-[#777]">For Feedback</p>
-                <span className="text-[13px] font-semibold">{CONTACT.email}</span>
+                <span className="break-all text-[13px] font-semibold">{CONTACT.email}</span>
               </div>
             </div>
 
             <div className="flex items-center gap-3">
               <Mail size={17} className="text-[#0F4C81]" />
 
-              <div>
+              <div className="min-w-0">
                 <p className="text-[12px] text-[#777]">For Enquiries</p>
-                <span className="text-[13px] font-semibold">{CONTACT.email}</span>
+                <span className="break-all text-[13px] font-semibold">{CONTACT.email}</span>
               </div>
             </div>
           </div>

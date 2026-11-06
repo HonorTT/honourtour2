@@ -383,12 +383,12 @@ export default function IndiaTourBottom({ reviews, faqs }) {
                 className="text-[#0F4C81]"
               />
 
-              <div>
+              <div className="min-w-0">
                 <p className="text-[8px] text-[#777]">
                   For Feedback
                 </p>
 
-                <span className="text-[9px] font-semibold">
+                <span className="break-all text-[9px] font-semibold">
                   {CONTACT.email}
                 </span>
               </div>
@@ -397,12 +397,12 @@ export default function IndiaTourBottom({ reviews, faqs }) {
             <div className="flex items-center gap-3">
               <Mail size={17} className="text-[#0F4C81]" />
 
-              <div>
+              <div className="min-w-0">
                 <p className="text-[8px] text-[#777]">
                   For Enquiries
                 </p>
 
-                <span className="text-[9px] font-semibold">
+                <span className="break-all text-[9px] font-semibold">
                   {CONTACT.email}
                 </span>
               </div>
