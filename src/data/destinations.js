@@ -997,10 +997,16 @@ function deriveNameFromSlug(slug) {
     .join(" ");
 }
 
-// Words that would match half the catalogue if used on their own.
+// Words that would match half the catalogue if used on their own. Each of these
+// once put a tour on the wrong page: "park" sent Kerala to Jim Corbett, "america"
+// sent the USA to Brazil, "africa" sent Egypt to Cape Town, "falls" sent Nepal to
+// Niagara. A place whose full name is one of these still matches on the full name.
 const WEAK_TOKENS = new Set([
   "north", "south", "east", "west", "central", "india", "indian", "tour",
   "tours", "package", "packages", "and", "the", "new", "city", "valley",
+  "park", "national", "falls", "cruise", "town", "cape", "bay", "lake", "beach",
+  "island", "islands", "hill", "hills", "fort", "mount", "united", "kingdom",
+  "africa", "america", "asia", "europe", "middle",
 ]);
 
 function matchPackagesByName(name, catalogue = packages) {

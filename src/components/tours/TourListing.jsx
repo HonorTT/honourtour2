@@ -170,6 +170,25 @@ export default function TourListing({ packages, badgeTag, filters = {}, wideCard
     onReset: handleReset,
   };
 
+  // Filters have nothing to work on when the destination has no tours, and a
+  // price slider stuck at zero only makes the page look broken.
+  if (packages.length === 0) {
+    return (
+      <div className="rounded-[14px] border border-dashed border-[#D1D5DB] bg-white p-8 text-center text-[13px] text-[#667085]">
+        <p className="text-[15px] font-semibold text-[#0F172A]">
+          We are still putting tours together for this destination.
+        </p>
+        <p className="mt-1.5">Tell us your dates and we will plan a custom itinerary for you.</p>
+        <EnquiryTrigger
+          subject="Custom itinerary request"
+          className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#FF7A1A] px-5 py-2.5 text-[13px] font-bold text-white transition hover:bg-[#E56A0F]"
+        >
+          Plan My Trip
+        </EnquiryTrigger>
+      </div>
+    );
+  }
+
   return (
     <div ref={listingRef} className="grid grid-cols-1 gap-7 scroll-mt-24 lg:grid-cols-[260px_minmax(0,1fr)]">
       {/* MOBILE FILTER TOGGLE */}
@@ -230,35 +249,14 @@ export default function TourListing({ packages, badgeTag, filters = {}, wideCard
       >
         {filteredPackages.length === 0 && (
           <div className="col-span-full rounded-[14px] border border-dashed border-[#D1D5DB] bg-white p-8 text-center text-[13px] text-[#667085]">
-            {packages.length === 0 ? (
-              <>
-                {/* The destination itself has no tours yet — a filter reset
-                    would change nothing, so offer a planner instead. */}
-                <p className="text-[15px] font-semibold text-[#0F172A]">
-                  We are still putting tours together for this destination.
-                </p>
-                <p className="mt-1.5">
-                  Tell us your dates and we will plan a custom itinerary for you.
-                </p>
-                <EnquiryTrigger
-                  subject="Custom itinerary request"
-                  className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#FF7A1A] px-5 py-2.5 text-[13px] font-bold text-white transition hover:bg-[#E56A0F]"
-                >
-                  Plan My Trip
-                </EnquiryTrigger>
-              </>
-            ) : (
-              <>
-                <p>No packages match the selected filters.</p>
-                <button
-                  type="button"
-                  onClick={handleReset}
-                  className="mt-3 rounded-full border border-[#0F4C81] px-4 py-2 text-[12px] font-semibold text-[#0F4C81] transition hover:bg-[#0F4C81] hover:text-white"
-                >
-                  Clear Filters
-                </button>
-              </>
-            )}
+            <p>No packages match the selected filters.</p>
+            <button
+              type="button"
+              onClick={handleReset}
+              className="mt-3 rounded-full border border-[#0F4C81] px-4 py-2 text-[12px] font-semibold text-[#0F4C81] transition hover:bg-[#0F4C81] hover:text-white"
+            >
+              Clear Filters
+            </button>
           </div>
         )}
 
@@ -268,7 +266,7 @@ export default function TourListing({ packages, badgeTag, filters = {}, wideCard
       </div>
 
       {totalPages > 1 && (
-        <nav aria-label="Pages of tours" className="mt-7 flex flex-wrap items-center justify-center gap-2">
+        <nav aria-label="Pages of tours" className="flex flex-wrap items-center justify-center gap-2 lg:col-start-2">
           <button
             type="button"
             onClick={() => goToPage(currentPage - 1)}

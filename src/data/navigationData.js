@@ -47,13 +47,14 @@ const indiaOverrides = {
 
 export const indiaNavigation = {
   recommended: [
-    link("india", "Rajasthan", indiaOverrides["Rajasthan"]),
-    link("india", "Kerala", indiaOverrides["Kerala"]),
-    link("india", "Andaman and Nicobar", indiaOverrides["Andaman and Nicobar"]),
     link("india", "Kashmir"),
     link("india", "Leh Ladakh"),
-    link("india", "Sikkim Darjeeling"),
-    link("india", "North East"),
+    link("india", "Kerala", indiaOverrides["Kerala"]),
+    link("india", "Himachal", "himachal-pradesh-tour-packages"),
+    link("india", "Rajasthan", indiaOverrides["Rajasthan"]),
+    link("india", "Sikkim", "sikkim-tour-packages"),
+    link("india", "Andaman and Nicobar", indiaOverrides["Andaman and Nicobar"]),
+    link("india", "Goa"),
   ],
   regions: [
     {
@@ -270,9 +271,12 @@ export function getSiblingRegionNames(navigationParent, name) {
 }
 
 /**
- * The column heading a place sits under, then its region — so a page for a
- * valley with no tours of its own can fall back to its state's tours
- * (Gulmarg -> Kashmir -> North India) rather than to an unrelated flagship.
+ * The column heading a place sits under, so a page for a valley with no tours
+ * of its own can show its state's tours (Gulmarg -> Kashmir).
+ *
+ * It stops there. A region only groups neighbours in the menu: Goa is not part
+ * of Rajasthan, yet "Rajasthan, West & Central India" matched every Rajasthan
+ * tour, so Goa's page was full of them. No tours is the honest answer there.
  */
 export function getParentNamesFor(navigationParent, name) {
   const nav = navigationParent === "india" ? indiaNavigation : worldNavigation;
@@ -280,7 +284,6 @@ export function getParentNamesFor(navigationParent, name) {
   if (!match) return [];
 
   const heading = match.col.heading.name;
-  const region = match.region.name || match.region.label || "";
 
-  return [heading, region].filter((item) => item && item.toLowerCase() !== name.toLowerCase());
+  return heading.toLowerCase() === name.toLowerCase() ? [] : [heading];
 }

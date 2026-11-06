@@ -114,6 +114,7 @@ export default function TourCategoryPage({ config }) {
               />
             </button>
 
+            {config.packages.length > 0 && (
             <div className="india-rating">
               <div className="india-stars">
                 {[1, 2, 3, 4, 5].map((item) => (
@@ -127,6 +128,7 @@ export default function TourCategoryPage({ config }) {
 
               <a href="#reviews">{config.reviewsLabel}</a>
             </div>
+            )}
           </div>
 
           {/* CALLBACK FORM */}
@@ -167,6 +169,7 @@ export default function TourCategoryPage({ config }) {
       ========================== */}
       <section className="india-tabs-section">
         <div className="india-container">
+          {config.packages.length > 0 && (
           <div className="india-listing-heading">
             <div className="live-tours-badge">
               <span />
@@ -188,6 +191,7 @@ export default function TourCategoryPage({ config }) {
               </button>
             </div>
           </div>
+          )}
 
           <TourListing
             packages={config.packages}
