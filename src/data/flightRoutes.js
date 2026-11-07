@@ -221,61 +221,6 @@ const rawRoutes = [
     relatedTours: [{ label: "India Tour Packages", href: "/india" }],
     otherRoutes: ["pune-to-delhi", "mumbai-to-srinagar", "delhi-to-srinagar"],
   },
-  {
-    slug: "mumbai-to-singapore",
-    from: "Mumbai", fromCode: "BOM",
-    to: "Singapore", toCode: "SIN",
-    international: true,
-    baseDuration: 340, minPrice: 16500, maxPrice: 38500, count: 16, allowStops: true,
-    description:
-      "Mumbai to Singapore is a popular international route for both leisure travellers and business passengers, with a mix of non-stop and one-stop options.",
-    relatedTours: [{ label: "South East Asia Tour Packages", href: "/world/south-east-asia-tour-packages" }, { label: "World Tour Packages", href: "/world" }],
-    otherRoutes: ["mumbai-to-bangkok", "pune-to-delhi", "delhi-to-bangkok"],
-  },
-  {
-    slug: "pune-to-singapore",
-    from: "Pune", fromCode: "PNQ",
-    to: "Singapore", toCode: "SIN",
-    international: true,
-    baseDuration: 380, minPrice: 18500, maxPrice: 41500, count: 14, allowStops: true,
-    description:
-      "Pune to Singapore flights typically connect via Mumbai or Delhi, offering convenient onward options to explore South East Asia.",
-    relatedTours: [{ label: "South East Asia Tour Packages", href: "/world/south-east-asia-tour-packages" }, { label: "World Tour Packages", href: "/world" }],
-    otherRoutes: ["mumbai-to-singapore", "mumbai-to-bangkok", "pune-to-delhi"],
-  },
-  {
-    slug: "mumbai-to-bangkok",
-    from: "Mumbai", fromCode: "BOM",
-    to: "Bangkok", toCode: "BKK",
-    international: true,
-    baseDuration: 280, minPrice: 13500, maxPrice: 32000, count: 16, allowStops: true,
-    description:
-      "Mumbai to Bangkok is a well-connected international route, popular among travellers heading to Thailand for both leisure and short getaways.",
-    relatedTours: [{ label: "South East Asia Tour Packages", href: "/world/south-east-asia-tour-packages" }, { label: "World Tour Packages", href: "/world" }],
-    otherRoutes: ["delhi-to-bangkok", "mumbai-to-singapore", "mumbai-to-london"],
-  },
-  {
-    slug: "delhi-to-bangkok",
-    from: "Delhi", fromCode: "DEL",
-    to: "Bangkok", toCode: "BKK",
-    international: true,
-    baseDuration: 260, minPrice: 12800, maxPrice: 30500, count: 16, allowStops: true,
-    description:
-      "Delhi to Bangkok offers frequent non-stop flights, making it one of the most convenient international sectors out of North India.",
-    relatedTours: [{ label: "South East Asia Tour Packages", href: "/world/south-east-asia-tour-packages" }, { label: "World Tour Packages", href: "/world" }],
-    otherRoutes: ["mumbai-to-bangkok", "mumbai-to-singapore", "delhi-to-mumbai"],
-  },
-  {
-    slug: "mumbai-to-london",
-    from: "Mumbai", fromCode: "BOM",
-    to: "London", toCode: "LHR",
-    international: true,
-    baseDuration: 555, minPrice: 42000, maxPrice: 98000, count: 16, allowStops: true,
-    description:
-      "Mumbai to London is a key long-haul route connecting India with the United Kingdom, served by full-service and connecting carriers alike.",
-    relatedTours: [{ label: "Europe Tour Packages", href: "/world/europe-tour-packages" }, { label: "World Tour Packages", href: "/world" }],
-    otherRoutes: ["mumbai-to-bangkok", "mumbai-to-singapore", "delhi-to-mumbai"],
-  },
 ];
 
 /** Turns a stored or static route row into the shape the pages render. */
@@ -318,26 +263,24 @@ function synthesizeRoute(slug) {
   const toAirport = findAirportBySlugToken(parts[1]);
   if (!fromAirport || !toAirport || fromAirport.code === toAirport.code) return null;
 
-  const international = fromAirport.country !== toAirport.country;
-
   return {
     slug,
     from: fromAirport.city,
     fromCode: fromAirport.code,
     to: toAirport.city,
     toCode: toAirport.code,
-    international,
+    international: false,
     title: `${fromAirport.city} to ${toAirport.city} Flights`,
     description: `${fromAirport.city} to ${toAirport.city} flights are available with a mix of domestic and connecting carriers, giving travellers flexible departure options.`,
-    relatedTours: [{ label: "India Tour Packages", href: "/india" }, { label: "World Tour Packages", href: "/world" }],
+    relatedTours: [{ label: "India Tour Packages", href: "/india" }],
     otherRoutes: flightRoutes.slice(0, 3).map((r) => r.slug),
     flights: generateFlights({
       slug,
       fromCode: fromAirport.code,
       toCode: toAirport.code,
-      baseDuration: international ? 300 : 130,
-      minPrice: international ? 15000 : 3500,
-      maxPrice: international ? 40000 : 9500,
+      baseDuration: 130,
+      minPrice: 3500,
+      maxPrice: 9500,
       count: 14,
       allowStops: true,
     }),

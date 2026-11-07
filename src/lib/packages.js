@@ -23,6 +23,7 @@ export async function getPackageBySlug(slug) {
   return withImage(await db.package.findUnique({ where: { slug } }));
 }
 
-export function getPackageSlugs() {
-  return db.package.findMany({ select: { slug: true }, orderBy: { order: "asc" } });
+export async function getPackageSlugs() {
+  const rows = await db.package.findMany({ select: { slug: true, status: true }, orderBy: { order: "asc" } });
+  return rows.filter(isVisible).map(({ slug }) => ({ slug }));
 }

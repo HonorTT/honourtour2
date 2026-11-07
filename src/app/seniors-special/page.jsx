@@ -8,7 +8,7 @@ import { buildMetadata, breadcrumbSchema } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "Seniors' Special Tour Packages | Senior Citizen Group Tours",
   description:
-    "Explore Seniors' Special tour packages across India and the world — comfortably paced group holidays designed with well-planned itineraries and dedicated tour assistance.",
+    "Explore Seniors' Special tour packages across India — comfortably paced group holidays designed with well-planned itineraries and dedicated tour assistance.",
   path: "/seniors-special",
 });
 
@@ -17,12 +17,6 @@ const seniorsSlugs = [
   "seniors-special-kashmir",
   "seniors-special-kerala",
   "seniors-special-delhi-agra",
-  "seniors-special-nepal",
-  "seniors-special-sri-lanka",
-  "seniors-special-thailand",
-  "seniors-special-dubai",
-  "seniors-special-europe",
-  "seniors-special-japan",
 ];
 
 const config = {
@@ -31,7 +25,7 @@ const config = {
   heading: "Seniors' Special Tour Packages",
   hiddenSections: ["regions", "interests", "seasons", "durations", "blogs"],
   intro:
-    "Comfortable, well-planned group holidays designed for senior travellers, with a relaxed pace, thoughtful assistance and memorable destinations across India and the world.",
+    "Comfortable, well-planned group holidays designed for senior travellers, with a relaxed pace, thoughtful assistance and memorable destinations across India.",
   introExtra:
     "Every Seniors' Special departure is planned with gentler sightseeing schedules, comfortable transport and dedicated tour managers who understand the needs of senior travellers, making every journey enjoyable and stress-free.",
   reviewsLabel: "2,187 Reviews",
@@ -52,24 +46,12 @@ const config = {
     ],
     countries: [
       "India (17)",
-      "Sri Lanka (1)",
-      "Nepal (1)",
-      "Thailand (1)",
-      "Japan (1)",
-      "France (1)",
-      "Switzerland (1)",
-      "UAE (1)",
     ],
     cities: [
       "Jaipur (1)",
       "Srinagar (1)",
       "Kochi (1)",
       "Delhi (1)",
-      "Colombo (1)",
-      "Kathmandu (1)",
-      "Bangkok (1)",
-      "Dubai (1)",
-      "Tokyo (1)",
     ],
     durations: ["3 - 5 Days", "6 - 8 Days", "9 - 14 Days"],
     packageTypes: ["Group Tour (30)"],
@@ -144,7 +126,7 @@ const config = {
     {
       question: "What destinations are available under Seniors' Special tours?",
       answer:
-        "Seniors' Special tours are available across India and select international destinations including Rajasthan, Kashmir, Kerala, Sri Lanka, Nepal, Dubai, Europe and Japan.",
+        "Seniors' Special tours are available across India, including Rajasthan, Kashmir and Kerala.",
     },
     {
       question: "What is included in a Seniors' Special package?",
@@ -161,7 +143,7 @@ const config = {
     heading: "Get to know more about Seniors' Special Tours before booking your package",
     paragraphs: [
       "Seniors' Special tours are thoughtfully paced group holidays created for senior travellers who want to explore new destinations comfortably. These tours combine relaxed itineraries, comfortable stays and dedicated tour assistance throughout the journey.",
-      "From the royal forts of Rajasthan and the gardens of Kashmir to international destinations like Sri Lanka, Nepal, Dubai, Europe and Japan, our Seniors' Special packages are designed to offer a comfortable and memorable travel experience.",
+      "From the royal forts of Rajasthan to the gardens of Kashmir, our Seniors' Special packages are designed to offer a comfortable and memorable travel experience.",
     ],
     extraParagraphs: [
       "Every itinerary is planned with gentler sightseeing schedules, ample rest time and comfortable transport, ensuring a relaxed and enjoyable holiday for senior travellers.",

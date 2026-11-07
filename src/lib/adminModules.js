@@ -121,7 +121,7 @@ export const adminModules = {
     group: "Catalog",
     model: "package",
     titleField: "title",
-    revalidate: ["/", "/package", "/india", "/world"],
+    revalidate: ["/", "/package", "/india"],
     listColumns: ["title", "slug", "category", "price"],
 
     // A richer list for the catalogue: thumbnail, title with its duration,
@@ -405,11 +405,11 @@ export const adminModules = {
   },
 
   destinations: {
-    label: "Destinations (India + World)",
+    label: "Destinations",
     group: "Catalog",
     model: "destination",
     titleField: "name",
-    revalidate: ["/india", "/world"],
+    revalidate: ["/india"],
     listColumns: ["name", "parent", "slug", "liveTourCount"],
     fields: [
       { name: "slug", label: "Slug", type: "text", required: true },
@@ -520,7 +520,6 @@ export const adminModules = {
       { name: "fromCode", label: "From airport code", type: "text", required: true },
       { name: "to", label: "To city", type: "text", required: true },
       { name: "toCode", label: "To airport code", type: "text", required: true },
-      { name: "international", label: "International route", type: "boolean" },
       { name: "baseDuration", label: "Base duration (minutes)", type: "number", required: true },
       { name: "minPrice", label: "Min price (INR)", type: "number", required: true },
       { name: "maxPrice", label: "Max price (INR)", type: "number", required: true },

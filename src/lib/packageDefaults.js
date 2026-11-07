@@ -66,12 +66,9 @@ export function defaultAccommodation(tour) {
 
 export function defaultTourDetails(tour) {
   const firstCity = firstCityOf(tour);
-  const isInternational = Boolean(tour.country);
 
   return {
-    flight: isInternational
-      ? `Return international airfare can be arranged by our team, or you may join the group on arrival at ${firstCity} if travelling on your own flights.`
-      : `Domestic flights or train connections to ${firstCity} can be arranged separately, or join the group directly at the first destination of the tour.`,
+    flight: `Domestic flights or train connections to ${firstCity} can be arranged separately, or join the group directly at the first destination of the tour.`,
     accommodation:
       "Comfortable, well-located hotels are used throughout the tour on a twin-sharing basis, as detailed in the itinerary.",
     reporting: `Please report at the designated meeting point in ${firstCity} at the time communicated by your tour manager, usually a few hours before the first scheduled activity.`,

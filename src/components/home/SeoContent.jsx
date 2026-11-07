@@ -25,8 +25,8 @@ export default function SeoContent() {
             group bookings are all handled as customised Kashmir itineraries.
           </p>
           <p>
-            We continue to run selected India and international holidays — Himachal, Kerala,
-            Rajasthan, Andaman, Europe, Dubai and South East Asia — for travellers who book
+            We continue to run selected India holidays — Himachal, Kerala,
+            Rajasthan and Andaman — for travellers who book
             with us year after year. But Kashmir remains our home ground, and it is where our
             pricing, our transport and our local contacts are strongest.
           </p>

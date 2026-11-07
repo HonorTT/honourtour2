@@ -47,8 +47,7 @@ export default function FlightRouteContent({ route }) {
               </h3>
             </div>
             <p className="mt-2 text-[13px] leading-[1.7] text-[#6B7280]">
-              Arrive at least 2 hours before departure for domestic flights and 3 hours for
-              international sectors, keep a valid photo ID handy, and check baggage allowances
+              Arrive at least 2 hours before departure, keep a valid photo ID handy, and check baggage allowances
               with your airline before travelling to {route.to}.
             </p>
           </div>

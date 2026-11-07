@@ -28,7 +28,7 @@ export async function generateMetadata({ params }) {
 
   return buildMetadata({
     title: `Tour Packages From ${result.raw.name} | Honor Tour & Travels`,
-    description: `Explore all-inclusive tour packages from ${result.raw.name} with domestic and international holidays, guided tours, sightseeing, stays and convenient departures with Honor Tour & Travels.`,
+    description: `Explore all-inclusive tour packages from ${result.raw.name} with India holidays, guided tours, sightseeing, stays and convenient departures with Honor Tour & Travels.`,
     path: `/tour-packages-from-${city}`,
   });
 }

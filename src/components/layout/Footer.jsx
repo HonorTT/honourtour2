@@ -17,7 +17,6 @@ const COLUMNS = [
     heading: "Tours",
     links: [
       { label: "India Tours", href: "/india" },
-      { label: "World Tours", href: "/world" },
       { label: "Speciality Tours", href: "/speciality-tours" },
       { label: "Customized Holidays", href: "/customized-holidays" },
     ],
@@ -62,7 +61,7 @@ export default function Footer() {
             </Link>
 
             <p className="mt-3 max-w-[320px] text-[13px] leading-relaxed text-[#94A3B8]">
-              Handpicked group departures across India and the world — flights, stays,
+              Handpicked group departures across India — flights, stays,
               sightseeing and a tour manager, all in one price.
             </p>
 

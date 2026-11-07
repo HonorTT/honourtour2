@@ -12,9 +12,9 @@ import JsonLd from "@/components/common/JsonLd";
 import { buildMetadata, breadcrumbSchema } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Flight Booking Online | Domestic & International Flights",
+  title: "Flight Booking Online | Domestic Flights Across India",
   description:
-    "Search and book domestic and international flights with Honor Tour & Travels. Compare airlines, timings and fares across popular routes and combine flights with holiday packages.",
+    "Search and book domestic flights across India with Honor Tour & Travels. Compare airlines, timings and fares across popular routes and combine flights with holiday packages.",
   path: "/flights",
 });
 
@@ -27,7 +27,7 @@ const faqs = [
   {
     question: "What documents are required for online flight booking?",
     answer:
-      "A valid government-issued photo ID is required for domestic travel, while a valid passport and visa (where applicable) are required for international flights.",
+      "A valid government-issued photo ID is required for domestic travel.",
   },
   {
     question: "Are there any flight ticket booking offers available?",
@@ -35,14 +35,14 @@ const faqs = [
       "Offers vary by airline and season. Our travel experts can share current deals available on your selected route at the time of booking.",
   },
   {
-    question: "Does Honor Tour & Travels offer domestic and international flight booking?",
+    question: "Does Honor Tour & Travels offer domestic flight booking?",
     answer:
-      "Yes, Honor Tour & Travels assists with both domestic and international flight bookings, either standalone or bundled with our holiday packages.",
+      "Yes, Honor Tour & Travels assists with domestic flight bookings across India, either standalone or bundled with our holiday packages.",
   },
   {
     question: "How early should I book my flight?",
     answer:
-      "Booking 4 to 8 weeks in advance for domestic routes and 2 to 4 months in advance for international routes generally offers the best fare availability.",
+      "Booking 4 to 8 weeks in advance for domestic routes generally offers the best fare availability.",
   },
   {
     question: "Can I change or cancel my flight booking?",
@@ -77,10 +77,10 @@ export default async function FlightsPage() {
           <div className="relative mx-auto w-full max-w-[1280px]">
             <div className="text-center text-white">
               <h1 className="text-[30px] font-bold sm:text-[38px]">
-                Book Domestic &amp; International Flights
+                Book Domestic Flights Across India
               </h1>
               <p className="mt-2 text-[15px] text-white/80">
-                Search flights across popular Indian and international routes.
+                Search flights across popular Indian routes.
               </p>
             </div>
 
@@ -100,8 +100,8 @@ export default async function FlightsPage() {
                 Book Flight Tickets Online with Honor Tour & Travels
               </h2>
               <p className="mt-2 text-[12px] leading-[1.7] text-[#4B5563]">
-                Whether you are planning a quick domestic getaway or a long-haul international
-                holiday, Honor Tour & Travels makes it simple to compare flight timings, airlines and
+                Whether you are planning a quick getaway or a longer trip within
+                India, Honor Tour & Travels makes it simple to compare flight timings, airlines and
                 fares across popular routes. Search by city, filter by stops or preferred
                 airline, and get in touch with our travel experts to confirm your booking —
                 or combine your flights with one of our curated group tours for a

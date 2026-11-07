@@ -26,7 +26,7 @@ function Column({ heading, items, onNavigate }) {
 }
 
 export default function CustomizedHolidaysMenu({ open, onNavigate, onMouseEnter, onMouseLeave }) {
-  const { indiaHolidays, worldHolidays, travelStyle, holidayServices } = CUSTOMIZED_HOLIDAYS_MENU;
+  const { indiaHolidays, travelStyle, holidayServices } = CUSTOMIZED_HOLIDAYS_MENU;
 
   return (
     <div
@@ -43,9 +43,8 @@ export default function CustomizedHolidaysMenu({ open, onNavigate, onMouseEnter,
         <p className="text-[12px] font-semibold uppercase tracking-wide text-[#6B7280]">Customized Holidays</p>
       </div>
 
-      <div className="grid grid-cols-4 gap-6 px-6 py-5">
+      <div className="grid grid-cols-3 gap-6 px-6 py-5">
         <Column heading={indiaHolidays.heading} items={indiaHolidays.items} onNavigate={onNavigate} />
-        <Column heading={worldHolidays.heading} items={worldHolidays.items} onNavigate={onNavigate} />
         <Column heading={travelStyle.heading} items={travelStyle.items} onNavigate={onNavigate} />
         <Column heading={holidayServices.heading} items={holidayServices.items} onNavigate={onNavigate} />
       </div>

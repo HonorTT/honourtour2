@@ -18,7 +18,7 @@ export default function DepartureCities({ cities }) {
           <span className="text-[#0F4C81]">Your City</span>
         </h2>
         <p className="mx-auto mt-2 max-w-2xl text-center text-[15px] leading-relaxed text-[#60646C] md:mt-3 md:text-[13px] md:leading-[1.6]">
-          Flights, stays, sightseeing and meals in one price — our Kashmir departures leave from these cities, along with the rest of our India and world tours. Pick yours below.
+          Flights, stays, sightseeing and meals in one price — our Kashmir departures leave from these cities, along with the rest of our India tours. Pick yours below.
         </p>
 
         <CardRail className="mt-6 flex gap-3 overflow-x-auto pb-2 no-scrollbar snap-x snap-mandatory md:mt-8 md:gap-4 sm:grid sm:overflow-visible sm:grid-cols-2 lg:grid-cols-4">

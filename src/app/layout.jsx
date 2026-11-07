@@ -10,7 +10,7 @@ const geistSans = Geist({
 
 const DEFAULT_TITLE = "Kashmir Tour Packages | Srinagar, Gulmarg, Pahalgam — Honor Tour & Travels";
 const DEFAULT_DESCRIPTION =
-  "Kashmir tour packages from Honor Tour & Travels — Srinagar houseboats, Gulmarg gondola, Pahalgam and Sonmarg, with stays, transport and sightseeing in one price. Ladakh, Himachal and world tours too.";
+  "Kashmir tour packages from Honor Tour & Travels — Srinagar houseboats, Gulmarg gondola, Pahalgam and Sonmarg, with stays, transport and sightseeing in one price. Ladakh, Himachal and more of India too.";
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),

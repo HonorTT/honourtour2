@@ -1,6 +1,6 @@
 import Link from "next/link";
 import {
-  Compass, MapPinned, Ticket, ShieldCheck, Phone,
+  Compass, MapPinned, ShieldCheck, Phone,
 } from "lucide-react";
 
 import Navbar from "@/components/layout/Navbar";
@@ -10,7 +10,7 @@ import JsonLd from "@/components/common/JsonLd";
 import { buildMetadata, breadcrumbSchema } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Customized Holidays | Plan Your Own India & World Itinerary",
+  title: "Customized Holidays | Plan Your Own India Itinerary",
   description:
     "Plan a fully customized holiday with Honor Tour & Travels — pick your destination, travel style and services, and let our experts build your itinerary.",
   path: "/customized-holidays",
@@ -28,12 +28,6 @@ const SERVICE_SECTIONS = [
     icon: Compass,
     title: "Activities",
     description: "From guided walks and water sports to cultural experiences, we can add on-ground activities that match your interests.",
-  },
-  {
-    id: "visa-assistance",
-    icon: Ticket,
-    title: "Visa Assistance",
-    description: "Our team helps guide you through visa documentation and application requirements for your chosen destination.",
   },
   {
     id: "travel-insurance",
@@ -61,7 +55,7 @@ function ColumnList({ heading, items }) {
 }
 
 export default function CustomizedHolidaysPage() {
-  const { indiaHolidays, worldHolidays, travelStyle, holidayServices } = CUSTOMIZED_HOLIDAYS_MENU;
+  const { indiaHolidays, travelStyle, holidayServices } = CUSTOMIZED_HOLIDAYS_MENU;
 
   return (
     <>
@@ -96,9 +90,8 @@ export default function CustomizedHolidaysPage() {
         ===================================================== */}
         <section className="px-3 py-12 sm:px-6 lg:px-8">
           <div className="mx-auto w-full max-w-[1280px]">
-            <div className="grid grid-cols-2 gap-8 rounded-[16px] border border-[#E5E7EB] bg-[#F7FAFC] p-6 sm:p-8 lg:grid-cols-4">
+            <div className="grid grid-cols-2 gap-8 rounded-[16px] border border-[#E5E7EB] bg-[#F7FAFC] p-6 sm:p-8 lg:grid-cols-3">
               <ColumnList heading={indiaHolidays.heading} items={indiaHolidays.items} />
-              <ColumnList heading={worldHolidays.heading} items={worldHolidays.items} />
               <ColumnList heading={travelStyle.heading} items={travelStyle.items} />
               <ColumnList heading={holidayServices.heading} items={holidayServices.items} />
             </div>
@@ -114,7 +107,7 @@ export default function CustomizedHolidaysPage() {
               What&apos;s Included in Holiday Services
             </h2>
 
-            <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
               {SERVICE_SECTIONS.map(({ id, icon: Icon, title, description }) => (
                 <div
                   key={id}

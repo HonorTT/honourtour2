@@ -8,7 +8,7 @@ import { buildMetadata, breadcrumbSchema } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "Women's Special Tour Packages | Group Holidays for Women",
   description:
-    "Explore Women's Special tour packages across India and the world — thoughtfully planned group holidays designed around comfort, safety and shared travel experiences.",
+    "Explore Women's Special tour packages across India — thoughtfully planned group holidays designed around comfort, safety and shared travel experiences.",
   path: "/womens-special",
 });
 
@@ -17,12 +17,6 @@ const womensSlugs = [
   "womens-special-rajasthan",
   "womens-special-kashmir",
   "womens-special-kerala",
-  "womens-special-sri-lanka",
-  "womens-special-nepal",
-  "womens-special-thailand",
-  "womens-special-dubai",
-  "womens-special-japan",
-  "womens-special-europe",
 ];
 
 const config = {
@@ -31,7 +25,7 @@ const config = {
   heading: "Women's Special Tour Packages",
   hiddenSections: ["regions", "interests", "seasons", "durations", "blogs"],
   intro:
-    "Travel with a group of like-minded women on holidays designed around comfort, camaraderie and thoughtfully planned itineraries across India and the world.",
+    "Travel with a group of like-minded women on holidays designed around comfort, camaraderie and thoughtfully planned itineraries across India.",
   introExtra:
     "Every Women's Special departure is planned with attentive tour managers, comfortable stays and well-paced sightseeing, making it easy to explore new destinations while making new friends along the way.",
   reviewsLabel: "3,204 Reviews",
@@ -53,24 +47,12 @@ const config = {
     ],
     countries: [
       "India (27)",
-      "Sri Lanka (1)",
-      "Nepal (1)",
-      "Thailand (1)",
-      "Japan (1)",
-      "France (1)",
-      "Switzerland (1)",
-      "UAE (1)",
     ],
     cities: [
       "Delhi (2)",
       "Jaipur (1)",
       "Srinagar (1)",
       "Kochi (1)",
-      "Colombo (1)",
-      "Kathmandu (1)",
-      "Bangkok (1)",
-      "Dubai (1)",
-      "Tokyo (1)",
     ],
     durations: ["3 - 5 Days", "6 - 8 Days", "9 - 14 Days"],
     packageTypes: ["Group Tour (47)"],
@@ -145,7 +127,7 @@ const config = {
     {
       question: "What destinations are available under Women's Special tours?",
       answer:
-        "Women's Special tours are available across India and select international destinations including Rajasthan, Kashmir, Kerala, Sri Lanka, Nepal, Thailand, Japan and Europe.",
+        "Women's Special tours are available across India, including Rajasthan, Kashmir and Kerala.",
     },
     {
       question: "What is included in a Women's Special package?",
@@ -162,7 +144,7 @@ const config = {
     heading: "Get to know more about Women's Special Tours before booking your package",
     paragraphs: [
       "Women's Special tours are thoughtfully designed group holidays that bring together women travellers who share a love for exploring new destinations. These tours combine comfortable stays, planned sightseeing and the camaraderie of travelling with a like-minded group.",
-      "From the heritage of Rajasthan and the meadows of Kashmir to international destinations like Sri Lanka, Nepal, Thailand and Europe, our Women's Special packages are curated to offer a comfortable and memorable travel experience.",
+      "From the heritage of Rajasthan to the meadows of Kashmir, our Women's Special packages are curated to offer a comfortable and memorable travel experience.",
     ],
     extraParagraphs: [
       "Whether you are travelling solo or with friends, a Women's Special tour offers the comfort of a dedicated tour manager, well-paced itineraries and a supportive group of fellow travellers.",

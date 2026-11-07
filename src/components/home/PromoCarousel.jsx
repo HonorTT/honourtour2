@@ -91,7 +91,7 @@ function WelcomeSlide() {
 
       <div className="mt-5 border-t border-[#E5E7EB] pt-3">
         <p className="text-center text-[11px] font-semibold uppercase tracking-wide text-[#60646C]">
-          India &bull; World &bull; Group Tours &bull; Customized Holidays
+          India &bull; Group Tours &bull; Customized Holidays
         </p>
       </div>
     </div>

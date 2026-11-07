@@ -21,27 +21,20 @@ export const rawCities = [
     packageCount: 27,
     reviewsLabel: "9,240 Reviews",
     intro:
-      "Explore thoughtfully planned tour packages from Mumbai covering popular destinations across India and the world. Discover convenient departures, guided sightseeing, comfortable stays and memorable Honor Tour & Travels experiences.",
+      "Explore thoughtfully planned tour packages from Mumbai covering popular destinations across India. Discover convenient departures, guided sightseeing, comfortable stays and memorable Honor Tour & Travels experiences.",
     introExtra:
-      "Whether you are planning a family holiday, honeymoon, group tour, seniors' tour or an international vacation, explore Honor Tour & Travels tour packages from Mumbai with convenient departure options and dedicated tour managers throughout your journey.",
+      "Whether you are planning a family holiday, honeymoon, group tour or seniors' tour, explore Honor Tour & Travels tour packages from Mumbai with convenient departure options and dedicated tour managers throughout your journey.",
     packageSlugs: [
       "jaipur-mandawa-tour-package",
       "delhi-agra-tour-package",
       "womens-special-kashmir",
-      "seniors-special-china-tour-package",
       "best-of-shimla",
       "best-of-kashmir-tour-package",
-      "best-of-thailand-tour-package",
       "highlights-of-rajasthan-tour-package",
     ],
     linkCloudTargets: [
-      { name: "Vietnam", href: "/world/vietnam-tour-packages" },
-      { name: "Thailand", href: "/world/south-east-asia-tour-packages" },
       { name: "Kerala", href: "/india/kerala-tour-packages" },
       { name: "Andaman", href: "/india/andaman-tour-packages" },
-      { name: "Japan", href: "/world/japan-china-korea-tour-packages" },
-      { name: "Europe", href: "/world/europe-tour-packages" },
-      { name: "Dubai", href: "/world/middle-east-tour-packages" },
       { name: "Ladakh", href: "/india/leh-ladakh-tour-packages" },
       { name: "Kashmir", href: "/india/kashmir-tour-packages" },
     ],
@@ -54,14 +47,13 @@ export const rawCities = [
     packageCount: 12,
     reviewsLabel: "1,860 Reviews",
     intro:
-      "Explore thoughtfully planned tour packages from Pune covering popular destinations across India and the world. Discover convenient departures, guided sightseeing, comfortable stays and memorable Honor Tour & Travels experiences.",
+      "Explore thoughtfully planned tour packages from Pune covering popular destinations across India. Discover convenient departures, guided sightseeing, comfortable stays and memorable Honor Tour & Travels experiences.",
     introExtra:
-      "Whether you are planning a family holiday, honeymoon, group tour, seniors' tour or an international vacation, explore Honor Tour & Travels tour packages from Pune with convenient departure options and dedicated tour managers throughout your journey.",
+      "Whether you are planning a family holiday, honeymoon, group tour or seniors' tour, explore Honor Tour & Travels tour packages from Pune with convenient departure options and dedicated tour managers throughout your journey.",
     packageSlugs: [
       "highlights-of-rajasthan-tour-package",
       "best-of-kashmir-tour-package",
       "highlights-of-kerala-tour-package",
-      "best-of-thailand-tour-package",
       "best-of-andaman-tour-package",
       "best-of-shimla",
     ],
@@ -69,10 +61,8 @@ export const rawCities = [
       { name: "Rajasthan", href: "/india/rajasthan-tour-packages" },
       { name: "Kashmir", href: "/india/kashmir-tour-packages" },
       { name: "Kerala", href: "/india/kerala-tour-packages" },
-      { name: "Thailand", href: "/world/south-east-asia-tour-packages" },
       { name: "Andaman", href: "/india/andaman-tour-packages" },
       { name: "Ladakh", href: "/india/leh-ladakh-tour-packages" },
-      { name: "Europe", href: "/world/europe-tour-packages" },
     ],
   },
   {
@@ -83,24 +73,18 @@ export const rawCities = [
     packageCount: 18,
     reviewsLabel: "3,120 Reviews",
     intro:
-      "Explore thoughtfully planned tour packages from Ahmedabad covering popular destinations across India and the world. Discover convenient departures, guided sightseeing, comfortable stays and memorable Honor Tour & Travels experiences.",
+      "Explore thoughtfully planned tour packages from Ahmedabad covering popular destinations across India. Discover convenient departures, guided sightseeing, comfortable stays and memorable Honor Tour & Travels experiences.",
     introExtra:
-      "Whether you are planning a family holiday, honeymoon, group tour, seniors' tour or an international vacation, explore Honor Tour & Travels tour packages from Ahmedabad with convenient departure options and dedicated tour managers throughout your journey.",
+      "Whether you are planning a family holiday, honeymoon, group tour or seniors' tour, explore Honor Tour & Travels tour packages from Ahmedabad with convenient departure options and dedicated tour managers throughout your journey.",
     packageSlugs: [
       "highlights-of-rajasthan-tour-package",
       "highlights-of-kerala-tour-package",
       "best-of-kashmir-tour-package",
-      "best-of-dubai",
-      "best-of-thailand-tour-package",
-      "european-jewels-tour-package",
     ],
     linkCloudTargets: [
       { name: "Rajasthan", href: "/india/rajasthan-tour-packages" },
       { name: "Kerala", href: "/india/kerala-tour-packages" },
       { name: "Kashmir", href: "/india/kashmir-tour-packages" },
-      { name: "Dubai", href: "/world/middle-east-tour-packages" },
-      { name: "Thailand", href: "/world/south-east-asia-tour-packages" },
-      { name: "Europe", href: "/world/europe-tour-packages" },
     ],
   },
   {
@@ -111,22 +95,18 @@ export const rawCities = [
     packageCount: 19,
     reviewsLabel: "3,340 Reviews",
     intro:
-      "Explore thoughtfully planned tour packages from Hyderabad covering popular destinations across India and the world. Discover convenient departures, guided sightseeing, comfortable stays and memorable Honor Tour & Travels experiences.",
+      "Explore thoughtfully planned tour packages from Hyderabad covering popular destinations across India. Discover convenient departures, guided sightseeing, comfortable stays and memorable Honor Tour & Travels experiences.",
     introExtra:
-      "Whether you are planning a family holiday, honeymoon, group tour, seniors' tour or an international vacation, explore Honor Tour & Travels tour packages from Hyderabad with convenient departure options and dedicated tour managers throughout your journey.",
+      "Whether you are planning a family holiday, honeymoon, group tour or seniors' tour, explore Honor Tour & Travels tour packages from Hyderabad with convenient departure options and dedicated tour managers throughout your journey.",
     packageSlugs: [
       "highlights-of-kerala-tour-package",
       "best-of-andaman-tour-package",
-      "best-of-thailand-tour-package",
-      "singapore-malaysia-tour-package",
       "best-of-kashmir-tour-package",
       "jaipur-mandawa-tour-package",
     ],
     linkCloudTargets: [
       { name: "Kerala", href: "/india/kerala-tour-packages" },
       { name: "Andaman", href: "/india/andaman-tour-packages" },
-      { name: "Thailand", href: "/world/south-east-asia-tour-packages" },
-      { name: "Singapore", href: "/world/south-east-asia-tour-packages" },
       { name: "Kashmir", href: "/india/kashmir-tour-packages" },
       { name: "Rajasthan", href: "/india/rajasthan-tour-packages" },
     ],
@@ -139,22 +119,18 @@ export const rawCities = [
     packageCount: 14,
     reviewsLabel: "1,980 Reviews",
     intro:
-      "Explore thoughtfully planned tour packages from Bangalore covering popular destinations across India and the world. Discover convenient departures, guided sightseeing, comfortable stays and memorable Honor Tour & Travels experiences.",
+      "Explore thoughtfully planned tour packages from Bangalore covering popular destinations across India. Discover convenient departures, guided sightseeing, comfortable stays and memorable Honor Tour & Travels experiences.",
     introExtra:
-      "Whether you are planning a family holiday, honeymoon, group tour, seniors' tour or an international vacation, explore Honor Tour & Travels tour packages from Bangalore with convenient departure options and dedicated tour managers throughout your journey.",
+      "Whether you are planning a family holiday, honeymoon, group tour or seniors' tour, explore Honor Tour & Travels tour packages from Bangalore with convenient departure options and dedicated tour managers throughout your journey.",
     packageSlugs: [
       "highlights-of-kerala-tour-package",
       "best-of-andaman-tour-package",
-      "best-of-thailand-tour-package",
-      "singapore-malaysia-tour-package",
       "all-of-ladakh-tour-package",
       "best-of-kashmir-tour-package",
     ],
     linkCloudTargets: [
       { name: "Kerala", href: "/india/kerala-tour-packages" },
       { name: "Andaman", href: "/india/andaman-tour-packages" },
-      { name: "Thailand", href: "/world/south-east-asia-tour-packages" },
-      { name: "Singapore", href: "/world/south-east-asia-tour-packages" },
       { name: "Ladakh", href: "/india/leh-ladakh-tour-packages" },
       { name: "Kashmir", href: "/india/kashmir-tour-packages" },
     ],
@@ -167,21 +143,16 @@ export const rawCities = [
     packageCount: 16,
     reviewsLabel: "2,760 Reviews",
     intro:
-      "Explore thoughtfully planned tour packages from Kolkata covering popular destinations across India and the world. Discover convenient departures, guided sightseeing, comfortable stays and memorable Honor Tour & Travels experiences.",
+      "Explore thoughtfully planned tour packages from Kolkata covering popular destinations across India. Discover convenient departures, guided sightseeing, comfortable stays and memorable Honor Tour & Travels experiences.",
     introExtra:
-      "Whether you are planning a family holiday, honeymoon, group tour, seniors' tour or an international vacation, explore Honor Tour & Travels tour packages from Kolkata with convenient departure options and dedicated tour managers throughout your journey.",
+      "Whether you are planning a family holiday, honeymoon, group tour or seniors' tour, explore Honor Tour & Travels tour packages from Kolkata with convenient departure options and dedicated tour managers throughout your journey.",
     packageSlugs: [
       "best-of-andaman-tour-package",
-      "best-of-thailand-tour-package",
-      "highlights-of-china-tour-package",
       "highlights-of-kerala-tour-package",
       "kashmir-highlights",
-      "seniors-special-china-tour-package",
     ],
     linkCloudTargets: [
       { name: "Andaman", href: "/india/andaman-tour-packages" },
-      { name: "Thailand", href: "/world/south-east-asia-tour-packages" },
-      { name: "China", href: "/world/japan-china-korea-tour-packages" },
       { name: "Kerala", href: "/india/kerala-tour-packages" },
       { name: "Kashmir", href: "/india/kashmir-tour-packages" },
       { name: "North East", href: "/india/north-east-tour-packages" },
@@ -195,16 +166,15 @@ export const rawCities = [
     packageCount: 22,
     reviewsLabel: "3,580 Reviews",
     intro:
-      "Explore thoughtfully planned tour packages from Delhi covering popular destinations across India and the world. Discover convenient departures, guided sightseeing, comfortable stays and memorable Honor Tour & Travels experiences.",
+      "Explore thoughtfully planned tour packages from Delhi covering popular destinations across India. Discover convenient departures, guided sightseeing, comfortable stays and memorable Honor Tour & Travels experiences.",
     introExtra:
-      "Whether you are planning a family holiday, honeymoon, group tour, seniors' tour or an international vacation, explore Honor Tour & Travels tour packages from Delhi with convenient departure options and dedicated tour managers throughout your journey.",
+      "Whether you are planning a family holiday, honeymoon, group tour or seniors' tour, explore Honor Tour & Travels tour packages from Delhi with convenient departure options and dedicated tour managers throughout your journey.",
     packageSlugs: [
       "best-of-kashmir-tour-package",
       "all-of-ladakh-tour-package",
       "jaipur-mandawa-tour-package",
       "best-of-shimla",
       "best-of-andaman-tour-package",
-      "best-of-thailand-tour-package",
     ],
     linkCloudTargets: [
       { name: "Kashmir", href: "/india/kashmir-tour-packages" },
@@ -212,7 +182,6 @@ export const rawCities = [
       { name: "Rajasthan", href: "/india/rajasthan-tour-packages" },
       { name: "Shimla", href: "/india/shimla-tour-packages" },
       { name: "Andaman", href: "/india/andaman-tour-packages" },
-      { name: "Thailand", href: "/world/south-east-asia-tour-packages" },
     ],
   },
   {
@@ -223,15 +192,14 @@ export const rawCities = [
     packageCount: 15,
     reviewsLabel: "2,410 Reviews",
     intro:
-      "Explore thoughtfully planned tour packages from Indore covering popular destinations across India and the world. Discover convenient departures, guided sightseeing, comfortable stays and memorable Honor Tour & Travels experiences.",
+      "Explore thoughtfully planned tour packages from Indore covering popular destinations across India. Discover convenient departures, guided sightseeing, comfortable stays and memorable Honor Tour & Travels experiences.",
     introExtra:
-      "Whether you are planning a family holiday, honeymoon, group tour, seniors' tour or an international vacation, explore Honor Tour & Travels tour packages from Indore with convenient departure options and dedicated tour managers throughout your journey.",
+      "Whether you are planning a family holiday, honeymoon, group tour or seniors' tour, explore Honor Tour & Travels tour packages from Indore with convenient departure options and dedicated tour managers throughout your journey.",
     packageSlugs: [
       "highlights-of-rajasthan-tour-package",
       "best-of-kashmir-tour-package",
       "highlights-of-kerala-tour-package",
       "delhi-agra-tour-package",
-      "best-of-thailand-tour-package",
       "best-of-andaman-tour-package",
     ],
     linkCloudTargets: [
@@ -239,7 +207,6 @@ export const rawCities = [
       { name: "Kashmir", href: "/india/kashmir-tour-packages" },
       { name: "Kerala", href: "/india/kerala-tour-packages" },
       { name: "Delhi Agra", href: "/india/delhi-tour-packages" },
-      { name: "Thailand", href: "/world/south-east-asia-tour-packages" },
       { name: "Andaman", href: "/india/andaman-tour-packages" },
     ],
   },
@@ -270,7 +237,7 @@ function buildCityConfig(raw) {
     },
     filters: {
       departureCities: [raw.name],
-      countries: ["India", "Thailand", "China", "Dubai", "Singapore", "Malaysia", "Europe", "Japan", "Australia"],
+      countries: ["India"],
       cities: ["Rajasthan", "Kerala", "Kashmir", "Ladakh", "Shimla", "Andaman"],
       durations: ["Less than 5 Days", "6 to 8 Days", "9 to 14 Days", "More than 14 Days"],
       packageTypes: ["Group Tour", "Customized Holidays"],
@@ -319,7 +286,6 @@ function buildCityConfig(raw) {
     blogs: [
       `Best tour packages from ${raw.name}`,
       `Weekend getaways from ${raw.name}`,
-      `International holidays from ${raw.name}`,
       `Family tour ideas from ${raw.name}`,
       `Travel tips before booking from ${raw.name}`,
     ],
@@ -348,33 +314,29 @@ function buildCityConfig(raw) {
     faqs: [
       {
         question: `What types of tour packages can I find departing from ${raw.name}?`,
-        answer: `Honor Tour & Travels offers a wide range of tour packages from ${raw.name}, including family holidays, group tours, honeymoon packages, women's special tours, seniors' tours and both domestic and international itineraries.`,
+        answer: `Honor Tour & Travels offers a wide range of tour packages from ${raw.name}, including family holidays, group tours, honeymoon packages, women's special tours, seniors' tours and customized India itineraries.`,
       },
       {
         question: `How soon should I book a tour package from ${raw.name}?`,
-        answer: `We recommend booking 6 to 8 weeks in advance for domestic tours and 2 to 4 months in advance for international tours from ${raw.name} to get the best availability and pricing.`,
+        answer: `We recommend booking 6 to 8 weeks in advance for tours from ${raw.name} to get the best availability and pricing.`,
       },
       {
         question: `What are popular domestic destinations to explore from ${raw.name}?`,
         answer: `Popular domestic destinations booked from ${raw.name} include Rajasthan, Kashmir, Kerala, Ladakh, Shimla and Andaman, among many others.`,
       },
       {
-        question: `Which international destinations can I visit from ${raw.name}?`,
-        answer: `Travellers from ${raw.name} frequently book international holidays to Thailand, Singapore, Malaysia, Dubai, Europe and Japan.`,
-      },
-      {
         question: `Can I book a honeymoon package from ${raw.name}?`,
-        answer: `Yes, Honor Tour & Travels offers curated honeymoon packages departing from ${raw.name} across both domestic and international destinations.`,
+        answer: `Yes, Honor Tour & Travels offers curated honeymoon packages departing from ${raw.name} across India.`,
       },
     ],
     seo: {
       heading: `Get to know more about Travel packages from ${raw.name}`,
       paragraphs: [
-        `${raw.name} is well connected to some of the most loved holiday destinations in India and around the world, making it a convenient departure point for your next trip.`,
+        `${raw.name} is well connected to some of the most loved holiday destinations in India, making it a convenient departure point for your next trip.`,
         `Our tour packages from ${raw.name} are designed for families, couples and groups, combining comfortable stays, guided sightseeing and experienced tour managers across a range of durations and travel styles.`,
       ],
       extraParagraphs: [
-        `Whether you are looking for a short weekend getaway, a longer domestic circuit or an international holiday, choosing the right season and itinerary will help you plan a memorable trip from ${raw.name}.`,
+        `Whether you are looking for a short weekend getaway, or a longer circuit across India, choosing the right season and itinerary will help you plan a memorable trip from ${raw.name}.`,
       ],
     },
   };

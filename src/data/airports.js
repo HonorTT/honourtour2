@@ -13,15 +13,6 @@ export const airports = [
   { city: "Lucknow", code: "LKO", country: "India" },
   { city: "Cochin", code: "COK", country: "India" },
   { city: "Leh", code: "IXL", country: "India" },
-
-  { city: "Dubai", code: "DXB", country: "UAE" },
-  { city: "Singapore", code: "SIN", country: "Singapore" },
-  { city: "Bangkok", code: "BKK", country: "Thailand" },
-  { city: "London", code: "LHR", country: "United Kingdom" },
-  { city: "Paris", code: "CDG", country: "France" },
-  { city: "New York", code: "JFK", country: "United States" },
-  { city: "Kuala Lumpur", code: "KUL", country: "Malaysia" },
-  { city: "Bali", code: "DPS", country: "Indonesia" },
 ];
 
 export function slugifyCity(city) {

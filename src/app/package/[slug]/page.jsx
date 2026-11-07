@@ -75,7 +75,7 @@ export async function generateMetadata({ params }) {
   const { slug } = await params;
   const tour = await getPackageBySlug(slug);
 
-  if (!tour) {
+  if (!tour || tour.status === "Hidden") {
     return buildMetadata({
       title: "Tour Package Not Found",
       description: "The tour package you are looking for is not available.",
@@ -117,6 +117,9 @@ export default async function PackageDetailPage({ params }) {
     notFound();
   }
 
+  // A hidden package has no public page, even from an old link.
+  if (stored.status === "Hidden") notFound();
+
   // Standard content fills whatever the admin has not written, so the page
   // and the edit form show exactly the same text.
   const tour = withPackageDefaults(stored);
@@ -143,9 +146,7 @@ export default async function PackageDetailPage({ params }) {
     (photo, index, all) => photo.src && all.findIndex((other) => other.src === photo.src) === index,
   );
 
-  const parentCrumb = tour.country
-    ? { label: "World", href: "/world" }
-    : { label: "India", href: "/india" };
+  const parentCrumb = { label: "India", href: "/india" };
 
   const stateSlugOverrides = {
     "Jammu and Kashmir": "kashmir-tour-packages",
@@ -157,9 +158,7 @@ export default async function PackageDetailPage({ params }) {
     return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-+|-+$)/g, "");
   }
 
-  const categoryCrumb = tour.country
-    ? { label: tour.country, href: `/world/${slugifyName(tour.country)}-tour-packages` }
-    : tour.state
+  const categoryCrumb = tour.state
     ? {
         label: tour.state,
         href: `/india/${stateSlugOverrides[tour.state] || `${slugifyName(tour.state)}-tour-packages`}`,

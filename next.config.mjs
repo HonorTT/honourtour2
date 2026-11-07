@@ -35,6 +35,21 @@ const nextConfig = {
   // the dynamic folder src/app/tour-packages-from/[city]/page.jsx
   // (App Router folder names can't mix literal text with [param]
   // inside one path segment, so a rewrite bridges the two).
+  // The site sells India tours only now. Old World links and Google results
+  // land on the India page instead of a dead end.
+  async redirects() {
+    return [
+      { source: "/world", destination: "/india", permanent: true },
+      { source: "/world/:path*", destination: "/india", permanent: true },
+      // Flights are India-only too; old links to the foreign routes go to the search page.
+      {
+        source: "/flights/:route(.*(?:dubai|singapore|bangkok|london|paris|new-york|kuala-lumpur|bali).*)",
+        destination: "/flights",
+        permanent: true,
+      },
+    ];
+  },
+
   async rewrites() {
     return [
       {

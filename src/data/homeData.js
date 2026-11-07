@@ -4,7 +4,6 @@ export const homeData = {
     tagline: "Srinagar · Gulmarg · Pahalgam · Sonmarg",
     cards: [
       { title: "India Tours", subtitle: "264 Tours • 666 Departures" },
-      { title: "World Tours", subtitle: "329 Tours • 569 Departures" },
       { title: "Women's Special Tours", subtitle: "47 Tours • 64 Departures" },
       { title: "Seniors' Special Tours", subtitle: "30 Tours • 46 Departures" },
     ],
@@ -42,9 +41,9 @@ export const homeData = {
   },
   mostLovedTours: {
     promoDestinations: [
+      { name: "Kashmir", days: "6 Days", price: "₹50,000" },
+      { name: "Ladakh", days: "13 Days", price: "₹87,000" },
       { name: "Kerala", days: "6 Days", price: "₹35,000" },
-      { name: "Japan", days: "5 Days", price: "₹1,75,000" },
-      { name: "Europe", days: "6 Days", price: "₹1,69,000" },
     ],
     destinations: [
       { name: "Best of Kashmir", price: "₹50,000", guests: "18.2k", slug: "best-of-kashmir-tour-package", image: "/uploads/destinations/anuj-yadav-1KehhzFg_Q0-unsplash.jpg" },
@@ -178,7 +177,7 @@ export const homeData = {
       },
       {
         title: "Tour managers",
-        description: "Experienced tour managers specializing in India and World tours.",
+        description: "Experienced tour managers specializing in India tours.",
         icon: "Users",
       },
       {
@@ -201,7 +200,7 @@ export const homeData = {
       },
       {
         question: "What type of tours or packages does Honor Tour & Travels offer?",
-        answer: "We offer a wide variety of tours including family packages, group tours, honeymoon packages, women's special tours, seniors' tours, and customized holidays. Our destinations span across India and the world.",
+        answer: "We offer a wide variety of tours including family packages, group tours, honeymoon packages, women's special tours, seniors' tours, and customized holidays. Our destinations span across India.",
       },
       {
         question: "Does Honor Tour & Travels book train tickets?",

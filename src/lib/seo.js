@@ -37,7 +37,6 @@ export const DEFAULT_KEYWORDS = [
   "Leh Ladakh tour packages",
   "tour packages",
   "India tour packages",
-  "world tour packages",
   "holiday packages",
   "flight booking",
   "hotel booking",

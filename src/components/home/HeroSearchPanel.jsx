@@ -95,7 +95,7 @@ export default function HeroSearchPanel({ destinations = [] }) {
                 disabled={Boolean(activeTab.href)}
                 className={`${value} -ml-0.5 cursor-pointer disabled:cursor-not-allowed disabled:text-[#94A3B8]`}
               >
-                <option value="">Search Destination, City or Country</option>
+                <option value="">Search Destination or City</option>
                 {destinations.map((item) => (
                   <option key={item.name} value={item.href}>
                     {item.name}

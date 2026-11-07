@@ -16,7 +16,6 @@ const nameAliases = {
 
 // "/india/kerala-tour-packages" -> "India"
 function regionFor(href) {
-  if (href?.startsWith("/world")) return "World";
   return "India";
 }
 

@@ -40,23 +40,20 @@ const merge = (fromDb, fromFile, key) => {
 
 export default async function sitemap() {
   const flightRouteSlugs = await getFlightRouteSlugs();
-  const [packages, transportRoutes, hotels, indiaFromDb, worldFromDb, citiesFromDb] = await Promise.all([
+  const [packages, transportRoutes, hotels, indiaFromDb, citiesFromDb] = await Promise.all([
     getPackageSlugs(),
     db.transportRoute.findMany({ select: { slug: true } }),
     db.hotel.findMany({ select: { slug: true, citySlug: true } }),
     getDestinationParamsFromDb("india"),
-    getDestinationParamsFromDb("world"),
     getDepartureCityParamsFromDb(),
   ]);
 
   const indiaDestinations = merge(indiaFromDb, getDestinationParams("india"), "destination");
-  const worldDestinations = merge(worldFromDb, getDestinationParams("world"), "destination");
   const departureCities = merge(citiesFromDb, getDepartureCityParams(), "city");
 
   const staticPages = [
     url("/", { changeFrequency: "daily", priority: 1 }),
     url("/india", { changeFrequency: "daily", priority: 0.9 }),
-    url("/world", { changeFrequency: "daily", priority: 0.9 }),
     url("/speciality-tours", { priority: 0.7 }),
     url("/customized-holidays", { priority: 0.7 }),
     url("/flights", { changeFrequency: "daily", priority: 0.8 }),
@@ -74,7 +71,6 @@ export default async function sitemap() {
     ...packages.map((pkg) => url(`/package/${pkg.slug}`, { priority: 0.7 })),
 
     ...indiaDestinations.map(({ destination }) => url(`/india/${destination}`, { priority: 0.7 })),
-    ...worldDestinations.map(({ destination }) => url(`/world/${destination}`, { priority: 0.7 })),
 
     ...getSpecialitySlugs().map((category) => url(`/speciality-tours/${category}`, { priority: 0.6 })),
 

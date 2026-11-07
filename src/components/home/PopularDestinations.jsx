@@ -27,7 +27,7 @@ export default function PopularDestinations({ items = [], groups = [] }) {
             Kashmir &amp; beyond
           </h2>
           <p className="mt-1.5 text-[14px] font-light text-[#60646C]">
-            Srinagar, Gulmarg, Pahalgam and Sonmarg — plus the India and world tours we still run.
+            Srinagar, Gulmarg, Pahalgam and Sonmarg — plus the other India tours we run.
           </p>
         </div>
       </div>

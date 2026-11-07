@@ -17,7 +17,7 @@ export default function PopularFlightRoutes({ routes }) {
             Discover the Most Popular Flight Routes
           </h2>
           <p className="mx-auto mt-2 max-w-[620px] text-[13px] text-[#60646C]">
-            Choose from popular domestic and international flight routes booked frequently by
+            Choose from popular domestic flight routes booked frequently by
             our travellers, and check indicative fares in a couple of clicks.
           </p>
         </div>

@@ -91,7 +91,7 @@ export function getSpecialityConfig(slug, packages = []) {
     breadcrumbTrail: ["Speciality Tours", name],
     heading: `${name} Packages`,
     hiddenSections: ["regions", "interests", "seasons", "durations", "blogs"],
-    intro: `Explore ${name.toLowerCase()} designed around comfort, great value and thoughtfully planned itineraries across India and the world.`,
+    intro: `Explore ${name.toLowerCase()} designed around comfort, great value and thoughtfully planned itineraries across India.`,
     introExtra: `Every departure is planned with attentive tour managers, comfortable stays and well-paced sightseeing, making it easy to enjoy a memorable ${name.toLowerCase()} experience.`,
     reviewsLabel: `${800 + packageSlugs.length * 40} Reviews`,
     listing: {

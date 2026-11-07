@@ -10,7 +10,6 @@ import {
   ChevronDown,
   ChevronRight,
   Gift,
-  Globe,
   Home,
   Landmark,
   Map,
@@ -25,14 +24,13 @@ import { usePathname } from "next/navigation";
 import MegaMenu from "./MegaMenu";
 import SpecialtyToursMenu from "./SpecialtyToursMenu";
 import CustomizedHolidaysMenu from "./CustomizedHolidaysMenu";
-import { indiaNavigation, worldNavigation } from "@/data/navigationData";
+import { indiaNavigation } from "@/data/navigationData";
 import { CONTACT } from "@/lib/contact";
 import { SPECIALTY_FEATURED, SPECIALTY_MORE } from "@/data/specialityTours";
 import { CUSTOMIZED_HOLIDAYS_MENU, PLAN_MY_HOLIDAY_HREF } from "@/data/customizedHolidays";
 
 const links = [
   { label: "India", megaMenu: "india", href: "/india" },
-  { label: "World", megaMenu: "world", href: "/world" },
   { label: "Specialty Tours", megaMenu: "specialty" },
   { label: "Customized Holidays", megaMenu: "customized" },
   { label: "Flights", hasBadge: true, href: "/flights" },
@@ -45,7 +43,6 @@ const links = [
 const mobileMenuLinks = [
   { label: "Home", href: "/", icon: Home },
   { label: "India Tours", href: "/india", icon: Landmark },
-  { label: "World Tours", href: "/world", icon: Globe },
   {
     label: "Speciality Tours",
     icon: Sparkles,
@@ -63,7 +60,6 @@ const mobileMenuLinks = [
       type: "grouped",
       groups: [
         CUSTOMIZED_HOLIDAYS_MENU.indiaHolidays,
-        CUSTOMIZED_HOLIDAYS_MENU.worldHolidays,
         CUSTOMIZED_HOLIDAYS_MENU.travelStyle,
         CUSTOMIZED_HOLIDAYS_MENU.holidayServices,
       ],
@@ -300,7 +296,6 @@ export default function Navbar() {
                     )}
 
                     {link.megaMenu === "india" && <MegaMenu data={indiaNavigation} {...menuProps} />}
-                    {link.megaMenu === "world" && <MegaMenu data={worldNavigation} {...menuProps} />}
                     {link.megaMenu === "specialty" && <SpecialtyToursMenu {...menuProps} />}
                     {link.megaMenu === "customized" && <CustomizedHolidaysMenu {...menuProps} />}
                   </div>
