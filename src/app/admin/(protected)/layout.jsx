@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import Image from "@/components/common/SiteImage";
 import { ExternalLink, LogOut } from "lucide-react";
 import { adminModules, adminModuleGroups } from "@/lib/adminModules";
 import { logoutAction } from "../login/actions";

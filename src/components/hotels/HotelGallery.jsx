@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/common/SiteImage";
 import { useState } from "react";
 import { Camera, X } from "lucide-react";
 

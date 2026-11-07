@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/common/SiteImage";
 import Link from "next/link";
 import { Caveat } from "next/font/google";
 import { Award, Headphones, MapPin, ShieldCheck, UsersRound } from "lucide-react";

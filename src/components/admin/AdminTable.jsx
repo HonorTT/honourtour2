@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "@/components/common/SiteImage";
 import { Pencil, Plus, Search, X } from "lucide-react";
 import { deleteRecord } from "@/app/admin/actions";
 import DeleteButton from "./DeleteButton";

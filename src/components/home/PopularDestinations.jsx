@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
+import Image from "@/components/common/SiteImage";
 import Link from "next/link";
 import { ChevronRight, MapPin } from "lucide-react";
 import CardRail from "@/components/common/CardRail";

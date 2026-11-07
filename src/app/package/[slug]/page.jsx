@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/common/SiteImage";
 
 import EnquiryTrigger from "@/components/common/EnquiryTrigger";
 import { CONTACT } from "@/lib/contact";

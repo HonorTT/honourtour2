@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/common/SiteImage";
 import { Users } from "lucide-react";
 import { getAmenityIcon } from "./amenityIcons";
 

@@ -1,7 +1,7 @@
 "use client";
 
 import CardRail from "@/components/common/CardRail";
-import Image from "next/image";
+import Image from "@/components/common/SiteImage";
 import { useState } from "react";
 import Link from "next/link";
 import { Award, CalendarDays, ChevronLeft, ChevronRight, ShieldCheck, ArrowRight } from "lucide-react";

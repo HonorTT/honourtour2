@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/common/SiteImage";
 import { useEffect, useState } from "react";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import { homeData } from "@/data/homeData";
