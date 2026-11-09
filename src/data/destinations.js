@@ -1,5 +1,5 @@
 import { packages } from "./packages.js";
-import { getParentNamesFor, getSiblingCityNames, getSiblingRegionNames } from "./navigationData.js";
+import { getCityNamesUnder, getParentNamesFor, getSiblingCityNames, getSiblingRegionNames } from "./navigationData.js";
 import { isIndiaPackage } from "./packageRegion.js";
 
 /* =========================================================
@@ -839,7 +839,7 @@ function buildDestinationConfig(raw, catalogue = packages) {
         "Mumbai", "Delhi", "Ahmedabad", "Bangalore", "Hyderabad", "Kolkata", "Pune", "Chennai", "Cochin", "Indore",
       ].map((city) => `${city}`),
       countries: raw.countries,
-      cities: raw.cities,
+      cities: filterCities(raw, resolvedPackages),
       durations: ["3 - 5 Days", "6 - 8 Days", "9 - 14 Days", "15+ Days"],
       packageTypes: ["Group Tour", "Customized Holidays"],
       specialityTours: ["Family", "Honeymoon Special", "Women's Special", "Seniors' Special", "Short Trips"],
@@ -1039,6 +1039,16 @@ function matchPackagesByName(name, catalogue = packages) {
  */
 
 
+/** A state's filter lists its real cities, leaving out any with no tours yet. */
+function filterCities(raw, tours) {
+  const cities = getCityNamesUnder(raw.parent, raw.name);
+  if (cities.length === 0) return raw.cities;
+
+  return cities.filter((city) =>
+    tours.some((pkg) => `${pkg.title} ${pkg.location}`.toLowerCase().includes(city.toLowerCase())),
+  );
+}
+
 export function packagesForDestination(parent, name, catalogue = packages) {
   // A World page must never list an India tour, or the other way round. Even
   // a perfect keyword match is wrong if it is on the wrong side of the site,
@@ -1046,7 +1056,13 @@ export function packagesForDestination(parent, name, catalogue = packages) {
   const onThisSide = (list) =>
     list.filter((pkg) => isIndiaPackage(pkg) === (parent === "india"));
 
-  let matches = onThisSide(matchPackagesByName(name, catalogue));
+  // A state also sells everything in its cities. "Jaipur Mandawa" never says
+  // Rajasthan, yet it belongs on the Rajasthan page.
+  const found = new Set(
+    [name, ...getCityNamesUnder(parent, name)].flatMap((place) => matchPackagesByName(place, catalogue)),
+  );
+
+  let matches = onThisSide(catalogue.filter((pkg) => found.has(pkg)));
   if (matches.length) return matches;
 
   // No tours of its own: show the region's instead (Gulmarg -> Kashmir).

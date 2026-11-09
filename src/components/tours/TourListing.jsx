@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { SlidersHorizontal, X } from "lucide-react";
 import TourFilterSidebar from "./TourFilterSidebar";
 import TourPackageCard from "./TourPackageCard";
 import EnquiryTrigger from "@/components/common/EnquiryTrigger";
-import { toCardItem, filterPackages, packageMatchesKeyword } from "./tourUtils";
+import { toCardItem, filterPackages, packageMatchesKeyword, stripCount } from "./tourUtils";
 
 /* =========================================================
    GENERIC TOUR LISTING (filters + package cards)
@@ -31,6 +32,18 @@ function pageItems(current, total) {
   );
 }
 
+// Kept apart and inside its own Suspense: useSearchParams in the listing itself
+// would take every tour card out of the page's static HTML.
+function CityFromUrl({ onCity }) {
+  const city = useSearchParams().get("city");
+
+  useEffect(() => {
+    if (city) onCity(city);
+  }, [city, onCity]);
+
+  return null;
+}
+
 export default function TourListing({ packages, badgeTag, filters = {}, wideCards = false }) {
   const listingRef = useRef(null);
   const isFirstRender = useRef(true);
@@ -43,18 +56,36 @@ export default function TourListing({ packages, badgeTag, filters = {}, wideCard
 
   const [selectedCountries, setSelectedCountries] = useState([]);
   const [selectedCities, setSelectedCities] = useState([]);
+  const [cityFromUrl, setCityFromUrl] = useState(null);
   const [selectedPackageTypes, setSelectedPackageTypes] = useState([]);
   const [selectedSpecialityTours, setSelectedSpecialityTours] = useState([]);
   const [selectedDurations, setSelectedDurations] = useState([]);
   const [sortBy, setSortBy] = useState("deals");
   const [maxPrice, setMaxPrice] = useState(priceBounds.max);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const [page, setPage] = useState(1);
 
   function toggle(list, setList, value) {
     setList(list.includes(value) ? list.filter((item) => item !== value) : [...list, value]);
   }
 
+  // A city opened from the menu: picked in the filter, matching the sidebar's
+  // own label when it has one ("Jaipur (13)").
+  const pickCity = useCallback(
+    (city) => {
+      const option = (filters.cities ?? []).find(
+        (label) => stripCount(label).toLowerCase() === city.toLowerCase(),
+      );
+      const value = option ?? city;
+      setCityFromUrl(value);
+      setSelectedCities([value]);
+      setPage(1);
+    },
+    [filters.cities],
+  );
+
   function handleReset() {
+    setCityFromUrl(null);
     setSelectedCountries([]);
     setSelectedCities([]);
     setSelectedPackageTypes([]);
@@ -123,8 +154,6 @@ export default function TourListing({ packages, badgeTag, filters = {}, wideCard
 
 
 
-  const [page, setPage] = useState(1);
-
   const totalPages = Math.max(1, Math.ceil(sortedPackages.length / PER_PAGE));
 
   // Filtering down to fewer pages must not strand the visitor on page 7.
@@ -149,8 +178,16 @@ export default function TourListing({ packages, badgeTag, filters = {}, wideCard
     return useful.length > 1 ? useful : [];
   }, [filters.countries, packages]);
 
+  // A city the menu lists but the state has no tours for yet still needs a
+  // box, so the visitor can see what is ticked and untick it.
+  const cityOptions =
+    cityFromUrl && !(filters.cities ?? []).includes(cityFromUrl)
+      ? [cityFromUrl, ...(filters.cities ?? [])]
+      : filters.cities;
+
   const sidebarProps = {
     ...filters,
+    cities: cityOptions,
     countries: availableCountries,
     priceBounds,
     maxPrice: effectiveMaxPrice || priceBounds.max,
@@ -191,6 +228,10 @@ export default function TourListing({ packages, badgeTag, filters = {}, wideCard
 
   return (
     <div ref={listingRef} className="grid grid-cols-1 gap-7 scroll-mt-24 lg:grid-cols-[260px_minmax(0,1fr)]">
+      <Suspense fallback={null}>
+        <CityFromUrl onCity={pickCity} />
+      </Suspense>
+
       {/* MOBILE FILTER TOGGLE */}
       <button
         type="button"
@@ -249,6 +290,22 @@ export default function TourListing({ packages, badgeTag, filters = {}, wideCard
       <div
         className={`grid grid-cols-1 content-start gap-4 sm:grid-cols-2${wideCards ? "" : " lg:grid-cols-3"}`}
       >
+        {cityFromUrl && selectedCities.includes(cityFromUrl) && (
+          <div className="col-span-full flex items-center justify-between gap-3 rounded-[12px] bg-[#EAF6F6] px-4 py-2.5">
+            <p className="text-[13.5px] font-semibold text-[#0B3B63]">
+              {filteredPackages.length} {filteredPackages.length === 1 ? "package" : "packages"} in{" "}
+              {stripCount(cityFromUrl)}
+            </p>
+            <button
+              type="button"
+              onClick={handleReset}
+              className="shrink-0 text-[12.5px] font-bold text-[#0F4C81] underline underline-offset-2 transition hover:text-[#FF7A1A]"
+            >
+              Show all packages
+            </button>
+          </div>
+        )}
+
         {filteredPackages.length === 0 && (
           <div className="col-span-full rounded-[14px] border border-dashed border-[#D1D5DB] bg-white p-8 text-center text-[13px] text-[#667085]">
             <p>No packages match the selected filters.</p>

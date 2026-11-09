@@ -28,10 +28,17 @@ function link(parent, name, override) {
   return { name, href: `/${parent}/${slug}` };
 }
 
+// A city has no page of its own: its link opens the state's page with that
+// city already picked in the filter (TourListing reads ?city=).
 function column(parent, heading, children = [], overrides = {}) {
+  const headingLink = link(parent, heading, overrides[heading]);
+
   return {
-    heading: link(parent, heading, overrides[heading]),
-    items: children.map((name) => link(parent, name, overrides[name])),
+    heading: headingLink,
+    items: children.map((name) => ({
+      name,
+      href: `${headingLink.href}?city=${encodeURIComponent(name)}`,
+    })),
   };
 }
 
@@ -43,6 +50,12 @@ const indiaOverrides = {
   Rajasthan: "rajasthan-tour-packages",
   Kerala: "kerala-tour-packages",
   "Andaman and Nicobar": "andaman-tour-packages",
+  // The admin's own records. A city link has to land on them directly, because
+  // the redirect from the name-based address would drop ?city=.
+  Kashmir: "kashmir-trip-packages-srinagar-gulmarg-pahalgam-sonamarg",
+  Sikkim: "sikkim-tour-places-best-sikkim-tour-packages-itinerary",
+  "Himachal Pradesh": "himachal-tour-packages-for-family-couples-groups",
+  "Leh-Ladakh": "leh-ladakh-holiday-packages-for-family-couples-and-groups",
 };
 
 export const indiaNavigation = {
@@ -64,9 +77,9 @@ export const indiaNavigation = {
         column("india", "Delhi"),
         column("india", "Himachal Pradesh", [
           "Chandrataal", "Dalhousie", "Dharamshala", "Kaza", "Manali", "Shimla", "Spiti Valley",
-        ]),
-        column("india", "Kashmir", ["Gulmarg", "Pahalgam", "Sonmarg", "Srinagar"]),
-        column("india", "Leh-Ladakh", ["Kargil", "Leh", "Nubra Valley", "Pangong Tso", "Turtuk"]),
+        ], indiaOverrides),
+        column("india", "Kashmir", ["Gulmarg", "Pahalgam", "Sonmarg", "Srinagar"], indiaOverrides),
+        column("india", "Leh-Ladakh", ["Kargil", "Leh", "Nubra Valley", "Pangong Tso", "Turtuk"], indiaOverrides),
         column("india", "Amritsar"),
         column("india", "Chandigarh"),
         column("india", "Punjab & Haryana", ["Kurukshetra", "Panipat"]),
@@ -92,7 +105,7 @@ export const indiaNavigation = {
       name: "East & North East India",
       all: link("india", "East and North East India"),
       columns: [
-        column("india", "Sikkim", ["Gangtok", "Pelling"]),
+        column("india", "Sikkim", ["Gangtok", "Pelling"], indiaOverrides),
         column("india", "West Bengal", ["Kolkata", "Darjeeling", "Kalimpong"]),
         column("india", "Assam", ["Guwahati", "Kaziranga"]),
         column("india", "Meghalaya", ["Shillong", "Cherrapunji"]),
@@ -255,6 +268,23 @@ function findColumnFor(nav, name) {
       col.items.some((item) => item.name.toLowerCase() === lower)
   );
 }
+
+/** The cities listed under a state's heading; empty for anything but a state. */
+export function getCityNamesUnder(navigationParent, name) {
+  const nav = navigationParent === "india" ? indiaNavigation : worldNavigation;
+  const wanted = toSlug(name);
+  const match = allColumnsWithRegion(nav).find(({ col }) => toSlug(col.heading.name) === wanted);
+  return match ? match.col.items.map((item) => item.name) : [];
+}
+
+/** Old "/india/jaipur-tour-packages" slug -> where that city lives now. */
+const cityPageTargets = new Map(
+  allColumnsWithRegion(indiaNavigation).flatMap(({ col }) =>
+    col.items.map((item) => [`${toSlug(item.name)}-tour-packages`, item.href]),
+  ),
+);
+
+export const getCityPageTarget = (slug) => cityPageTargets.get(slug) ?? null;
 
 export function getSiblingCityNames(navigationParent, name) {
   const nav = navigationParent === "india" ? indiaNavigation : worldNavigation;

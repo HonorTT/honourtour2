@@ -5,6 +5,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import TourCategoryPage from "@/components/tours/TourCategoryPage";
 import { findDestinationSlugByName, getDestination, getDestinationParams } from "@/data/destinations";
+import { getCityPageTarget } from "@/data/navigationData";
 import { getDestinationParamsFromDb, getDestinationRecords } from "@/lib/destinations";
 import { getAllPackages } from "@/lib/packages";
 import JsonLd from "@/components/common/JsonLd";
@@ -12,7 +13,8 @@ import { buildMetadata, breadcrumbSchema } from "@/lib/seo";
 
 export async function generateStaticParams() {
   const fromDb = await getDestinationParamsFromDb("india");
-  return fromDb.length ? fromDb : getDestinationParams("india");
+  const params = fromDb.length ? fromDb : getDestinationParams("india");
+  return params.filter(({ destination }) => !getCityPageTarget(destination));
 }
 
 export async function generateMetadata({ params }) {
@@ -37,6 +39,10 @@ export async function generateMetadata({ params }) {
 
 export default async function IndiaDestinationPage({ params }) {
   const { destination } = await params;
+
+  // Cities live inside their state's page now.
+  const cityTarget = getCityPageTarget(destination);
+  if (cityTarget) permanentRedirect(cityTarget);
 
   // Checked first: an unknown slug is otherwise synthesized into a page, so a
   // retired address would quietly serve a thin duplicate instead of moving on.

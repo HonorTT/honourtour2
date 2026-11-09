@@ -3,6 +3,7 @@ import { getPackageSlugs } from "@/lib/packages";
 import { getDestinationParamsFromDb } from "@/lib/destinations";
 import { getDepartureCityParamsFromDb } from "@/lib/departureCities";
 import { getDestinationParams } from "@/data/destinations";
+import { getCityPageTarget } from "@/data/navigationData";
 import { getSpecialitySlugs } from "@/data/specialityTours";
 import { getDepartureCityParams } from "@/data/departureCities";
 import { getFlightRouteSlugs } from "@/lib/flights";
@@ -48,7 +49,10 @@ export default async function sitemap() {
     getDepartureCityParamsFromDb(),
   ]);
 
-  const indiaDestinations = merge(indiaFromDb, getDestinationParams("india"), "destination");
+  // A city page only redirects to its state now, so it is not listed.
+  const indiaDestinations = merge(indiaFromDb, getDestinationParams("india"), "destination").filter(
+    ({ destination }) => !getCityPageTarget(destination),
+  );
   const departureCities = merge(citiesFromDb, getDepartureCityParams(), "city");
 
   const staticPages = [
