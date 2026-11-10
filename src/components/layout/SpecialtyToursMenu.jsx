@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/common/SiteLink";
 import { ArrowRight } from "lucide-react";
 import { SPECIALTY_FEATURED, SPECIALTY_MORE } from "@/data/specialityTours";
 

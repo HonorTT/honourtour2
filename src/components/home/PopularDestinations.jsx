@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "@/components/common/SiteImage";
-import Link from "next/link";
+import Link from "@/components/common/SiteLink";
 import { ChevronRight, MapPin } from "lucide-react";
 import CardRail from "@/components/common/CardRail";
 

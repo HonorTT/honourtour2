@@ -1,5 +1,5 @@
 import Image from "@/components/common/SiteImage";
-import Link from "next/link";
+import Link from "@/components/common/SiteLink";
 import { Caveat } from "next/font/google";
 import { Award, Headphones, MapPin, ShieldCheck, UsersRound } from "lucide-react";
 

@@ -12,6 +12,10 @@ const nextConfig = {
     // last resort. Ordered by preference — the first Accept match wins.
     formats: ["image/avif", "image/webp"],
 
+    // Nothing on the site needs more than 1600px; the 1920-3840 defaults only
+    // sent bigger files to large screens.
+    deviceSizes: [640, 750, 828, 1080, 1200, 1600],
+
     // Cards render around 230-300px wide, so the default jump from 384 to 640
     // made the browser fetch roughly a third more than it needed. 512 lands
     // between them.

@@ -6,7 +6,7 @@ import PackageGallery from "@/components/package/PackageGallery";
 
 
 import { notFound, permanentRedirect } from "next/navigation";
-import Link from "next/link";
+import Link from "@/components/common/SiteLink";
 import {
   CalendarDays,
   Check,

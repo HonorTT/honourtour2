@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/common/SiteLink";
 import { Plane, Clock3, Info } from "lucide-react";
 
 export default function FlightRouteContent({ route }) {

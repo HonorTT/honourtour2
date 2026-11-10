@@ -1,5 +1,5 @@
 import Image from "@/components/common/SiteImage";
-import Link from "next/link";
+import Link from "@/components/common/SiteLink";
 import { Mail, Phone } from "lucide-react";
 
 import { BUILT_BY, CONTACT } from "@/lib/contact";

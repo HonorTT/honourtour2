@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import Link from "@/components/common/SiteLink";
 import { ChevronDown, ChevronRight } from "lucide-react";
 
 /* =========================================================

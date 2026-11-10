@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/common/SiteLink";
 import {
   Compass, MapPinned, ShieldCheck, Phone,
 } from "lucide-react";

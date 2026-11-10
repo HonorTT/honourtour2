@@ -19,21 +19,21 @@ import { getCollection } from "./mongodb.js";
 ========================================================= */
 
 const MAX_UPLOAD_BYTES = 25 * 1024 * 1024;
-const MAX_WIDTH = 1920;
+const MAX_WIDTH = 1600;
 
-// Nothing is stored above this, whatever walks in. A 40 MP camera file and a
-// phone screenshot both come out as a web-sized picture.
-const TARGET_BYTES = 1024 * 1024;
+// Nothing is stored above this, whatever walks in. These files reach visitors
+// as they are, so every kilobyte here is paid for on each view.
+const TARGET_BYTES = 200 * 1024;
 
 // Tried in order until one lands under the target. Quality first, because
 // dropping it is invisible on a photo; width only once quality has run out.
 const ATTEMPTS = [
-  { width: MAX_WIDTH, quality: 78 },
   { width: MAX_WIDTH, quality: 68 },
-  { width: 1600, quality: 62 },
+  { width: MAX_WIDTH, quality: 58 },
   { width: 1440, quality: 55 },
-  { width: 1280, quality: 50 },
-  { width: 1080, quality: 45 },
+  { width: 1280, quality: 52 },
+  { width: 1080, quality: 48 },
+  { width: 960, quality: 42 },
 ];
 
 export const ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/avif", "image/gif"];

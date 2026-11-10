@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "@/components/common/SiteImage";
-import Link from "next/link";
+import Link from "@/components/common/SiteLink";
 
 import EnquiryTrigger from "@/components/common/EnquiryTrigger";
 import { CalendarDays, Clock3, Heart, MapPin, MessageCircle, Scale } from "lucide-react";

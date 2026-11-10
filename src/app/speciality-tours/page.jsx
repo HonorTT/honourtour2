@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/common/SiteLink";
 import { Sparkles } from "lucide-react";
 
 import Navbar from "@/components/layout/Navbar";

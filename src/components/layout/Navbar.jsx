@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "@/components/common/SiteImage";
-import Link from "next/link";
+import Link from "@/components/common/SiteLink";
 import {
   ArrowRight,
   Building2,

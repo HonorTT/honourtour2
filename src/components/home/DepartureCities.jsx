@@ -1,6 +1,6 @@
 import CardRail from "@/components/common/CardRail";
 import Image from "@/components/common/SiteImage";
-import Link from "next/link";
+import Link from "@/components/common/SiteLink";
 import { homeData } from "@/data/homeData";
 import { getDestinationImage } from "@/data/destinationImages";
 

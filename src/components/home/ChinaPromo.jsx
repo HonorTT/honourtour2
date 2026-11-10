@@ -3,7 +3,7 @@
 import CardRail from "@/components/common/CardRail";
 import Image from "@/components/common/SiteImage";
 import { useState } from "react";
-import Link from "next/link";
+import Link from "@/components/common/SiteLink";
 import { Award, CalendarDays, ChevronLeft, ChevronRight, ShieldCheck, ArrowRight } from "lucide-react";
 import { homeData } from "@/data/homeData";
 import { getDestinationImage } from "@/data/destinationImages";

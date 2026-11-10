@@ -1,6 +1,6 @@
 import CardRail from "@/components/common/CardRail";
 import Image from "@/components/common/SiteImage";
-import Link from "next/link";
+import Link from "@/components/common/SiteLink";
 import { Heart } from "lucide-react";
 import { homeData } from "@/data/homeData";
 import PromoCarousel from "./PromoCarousel";

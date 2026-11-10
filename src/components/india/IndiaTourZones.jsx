@@ -5,7 +5,7 @@
 import Image from "@/components/common/SiteImage";
 
 import { useState } from "react";
-import Link from "next/link";
+import Link from "@/components/common/SiteLink";
 
 function slugifyZoneName(name) {
   return name

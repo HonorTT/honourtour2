@@ -4,7 +4,7 @@
 
 import Image from "@/components/common/SiteImage";
 
-    import Link from "next/link";
+    import Link from "@/components/common/SiteLink";
 
 import { useState } from "react";
 import {

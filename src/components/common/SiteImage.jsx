@@ -11,10 +11,13 @@ import NextImage from "next/image";
    monthly quota runs out, every new picture comes back as
    "402 Payment required" and shows as a broken image.
    Everything else still goes through the optimizer as before.
+
+   Quality defaults to 60: on WebP/AVIF that looks the same on
+   a card and sends roughly a quarter fewer bytes.
 ========================================================= */
 
 const isUploaded = (src) => typeof src === "string" && src.startsWith("/api/media/");
 
-export default function SiteImage({ src, unoptimized, ...props }) {
-  return <NextImage src={src} unoptimized={unoptimized ?? isUploaded(src)} {...props} />;
+export default function SiteImage({ src, unoptimized, quality = 60, ...props }) {
+  return <NextImage src={src} unoptimized={unoptimized ?? isUploaded(src)} quality={quality} {...props} />;
 }

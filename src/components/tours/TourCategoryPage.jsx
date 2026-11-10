@@ -3,7 +3,7 @@
 import { CONTACT } from "@/lib/contact";
 
 import { useState } from "react";
-import Link from "next/link";
+import Link from "@/components/common/SiteLink";
 import {
   ChevronDown,
   Columns2,
