@@ -5,7 +5,8 @@ import { ChevronRight, Plane } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import FlightSearchForm from "@/components/flights/FlightSearchForm";
-import FlightResults from "@/components/flights/FlightResults";
+import LiveFlightResults from "@/components/flights/LiveFlightResults";
+import { liveSearchEnabled } from "@/lib/travel/demoGuard";
 import FlightRouteContent from "@/components/flights/FlightRouteContent";
 import FlightFAQ from "@/components/flights/FlightFAQ";
 import { getRouteFaqs } from "@/data/flightRoutes";
@@ -106,7 +107,7 @@ export default async function FlightRoutePage({ params }) {
           </div>
         </section>
 
-        <FlightResults route={route} airlines={airlines} />
+        <LiveFlightResults route={route} airlines={airlines} live={liveSearchEnabled()} />
 
         <FlightRouteContent route={{ ...route, otherRouteObjects }} />
 

@@ -17,8 +17,8 @@ import { ArrowRight, ChevronDown, MapPin } from "lucide-react";
    time. Closed city lists stay in the HTML (just hidden) so
    search engines still see the links.
 
-   The state list has a fixed height so the menu does not jump
-   when moving between a long region and a short one.
+   The state list grows with its content (a tab may hold one
+   state) and scrolls past 410px.
 ========================================================= */
 
 const FOCUS_RING =
@@ -97,7 +97,7 @@ export default function MegaMenu({ data, open, onNavigate, onMouseEnter, onMouse
       </div>
 
       {/* STATES */}
-      <div className="h-[410px] max-h-[calc(100vh-240px)] overflow-y-auto px-6 pb-4 pt-4">
+      <div className="max-h-[min(410px,calc(100vh-240px))] min-h-[180px] overflow-y-auto px-6 pb-4 pt-4">
         <div className="flex items-center justify-between gap-4">
           <p className="min-w-0 text-[17px] font-bold leading-tight text-[#0B3B63]">{region.name}</p>
 

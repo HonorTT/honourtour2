@@ -6,6 +6,8 @@ import {
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { CUSTOMIZED_HOLIDAYS_MENU } from "@/data/customizedHolidays";
+import { withoutDraftedPlaces } from "@/data/draftFilter";
+import { getDraftDestinations } from "@/lib/destinationStatus";
 import JsonLd from "@/components/common/JsonLd";
 import { buildMetadata, breadcrumbSchema } from "@/lib/seo";
 
@@ -54,8 +56,13 @@ function ColumnList({ heading, items }) {
   );
 }
 
-export default function CustomizedHolidaysPage() {
-  const { indiaHolidays, travelStyle, holidayServices } = CUSTOMIZED_HOLIDAYS_MENU;
+export default async function CustomizedHolidaysPage() {
+  const { travelStyle, holidayServices } = CUSTOMIZED_HOLIDAYS_MENU;
+  const drafts = await getDraftDestinations();
+  const indiaHolidays = {
+    ...CUSTOMIZED_HOLIDAYS_MENU.indiaHolidays,
+    items: withoutDraftedPlaces(CUSTOMIZED_HOLIDAYS_MENU.indiaHolidays.items, drafts),
+  };
 
   return (
     <>

@@ -2,8 +2,10 @@
 
 import { homeData } from "@/data/homeData";
 import FAQAccordion from "@/components/common/FAQAccordion";
+import { HOME_DEFAULTS } from "@/data/homeDefaults";
 
-export default function FAQ({ content }) {
+export default function FAQ({ content, settings = HOME_DEFAULTS }) {
+  const s = settings;
   const faq = { ...homeData.faq, ...(content ?? {}) };
 
   return (
@@ -11,10 +13,10 @@ export default function FAQ({ content }) {
       <div className="mx-auto w-full max-w-[1280px]">
         <div className="text-center">
           <h2 className="text-[24px] font-bold leading-tight text-[#0F172A] sm:text-[30px]">
-            Frequently Asked Questions
+            {s.faqHeading}
           </h2>
           <p className="mt-2 text-[13px] text-[#60646C]">
-            We help you prepare for your trip and answer commonly asked travel questions.
+            {s.faqSubtitle}
           </p>
         </div>
 
@@ -24,7 +26,7 @@ export default function FAQ({ content }) {
 
         <div className="mt-10 text-center">
           <p className="text-[13px] text-[#2B2B2B]">
-            Have questions about
+            {s.faqCategoriesLabel}
           </p>
           <div className="mt-4 flex flex-wrap justify-center gap-2">
             {faq.categories.map((cat) => (
@@ -37,10 +39,10 @@ export default function FAQ({ content }) {
             ))}
           </div>
           <p className="mt-4 text-[13px] text-[#4B5563]">
-            We&apos;ve got you covered.
+            {s.faqFooter}
           </p>
           <button className="mt-4 rounded-full bg-[#FF7A1A] shadow-md shadow-orange-900/20 transition-all duration-200 hover:bg-[#E56A0F] hover:shadow-lg hover:-translate-y-0.5 px-6 py-2 text-[13px] font-bold text-white">
-            View all FAQs
+            {s.faqButton}
           </button>
         </div>
       </div>

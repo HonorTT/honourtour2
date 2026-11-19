@@ -19,7 +19,7 @@ function regionFor(href) {
   return "India";
 }
 
-export default function DestinationStrip({ destinations }) {
+export default function DestinationStrip({ destinations, settings }) {
   const source = destinations?.length ? destinations : homeData.destinations;
 
   const items = source.map((destination) => {
@@ -37,7 +37,7 @@ export default function DestinationStrip({ destinations }) {
       // the name when it is set.
       tagline: destination.tagline || null,
       href,
-      image: getDestinationImage(destination.name),
+      image: destination.image || getDestinationImage(destination.name),
       region: regionFor(href),
     };
   });
@@ -45,5 +45,5 @@ export default function DestinationStrip({ destinations }) {
   // "All" first, then only the regions actually present
   const groups = ["All", ...new Set(items.map((item) => item.region))];
 
-  return <PopularDestinations items={items} groups={groups} />;
+  return <PopularDestinations items={items} groups={groups} settings={settings} />;
 }

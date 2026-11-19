@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import EnquiryTrigger from "@/components/common/EnquiryTrigger";
 import { homeData } from "@/data/homeData";
+import { HOME_DEFAULTS } from "@/data/homeDefaults";
 
 function useInView(threshold = 0.15) {
   const ref = useRef(null);
@@ -103,7 +104,7 @@ function CounterStat({ value, inView }) {
   return <>{display}</>;
 }
 
-export default function TrustReviews({ stats, reviews }) {
+export default function TrustReviews({ stats, reviews, settings = HOME_DEFAULTS }) {
   const trustReviews = {
     ...homeData.trustReviews,
     stats: stats?.length ? stats : homeData.trustReviews.stats,
@@ -121,7 +122,7 @@ export default function TrustReviews({ stats, reviews }) {
         {/* ================= MOBILE-ONLY LAYOUT (<768px) ================= */}
         <div className="relative overflow-hidden bg-[#0B3B63] p-[18px] sm:rounded-[20px] md:hidden">
           <h2 className={`line-clamp-2 text-center text-[24px] font-bold leading-tight text-white sm:text-[30px] ${fade()}`}>
-            Trusted by Honor Tour & Travels guests across India
+            {settings.trustHeading}
           </h2>
 
           <div className={`mt-[18px] grid grid-cols-2 gap-5 ${fade("delay-100")}`}>
@@ -193,7 +194,7 @@ export default function TrustReviews({ stats, reviews }) {
         {/* ================= DESKTOP LAYOUT (unchanged, >=768px) ================= */}
         <div className="hidden md:block">
           <h2 className="text-center text-[24px] font-bold leading-tight text-white sm:text-[30px]">
-            Trusted by Honor Tour & Travels guests across India
+            {settings.trustHeading}
           </h2>
 
           <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">

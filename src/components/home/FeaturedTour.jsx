@@ -4,6 +4,7 @@ import Image from "@/components/common/SiteImage";
 import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { homeData } from "@/data/homeData";
+import { HOME_DEFAULTS } from "@/data/homeDefaults";
 import BookingModal from "@/components/package/BookingModal";
 
 const AUTO_SLIDE_MS = 5000;
@@ -23,7 +24,7 @@ function parseDays(days) {
   return Number(String(days).match(/\d+/)?.[0]) || 1;
 }
 
-export default function FeaturedTour({ slides }) {
+export default function FeaturedTour({ slides, settings = HOME_DEFAULTS }) {
   const tours = slides?.length ? slides : homeData.featuredTour;
   const [index, setIndex] = useState(0);
   const [bookingOpen, setBookingOpen] = useState(false);
@@ -108,9 +109,9 @@ export default function FeaturedTour({ slides }) {
                 onClick={() => setBookingOpen(true)}
                 className="rounded-full bg-white px-6 py-2 text-[13px] font-bold text-[#0F172A] shadow-lg transition duration-200 hover:-translate-y-0.5 hover:bg-[#F7FAFC] active:scale-95"
               >
-                Book now
+                {settings.featuredButton}
               </button>
-              <p className="text-[11px] text-white/70">*T&C Apply</p>
+              <p className="text-[11px] text-white/70">{settings.featuredNote}</p>
             </div>
           </div>
 

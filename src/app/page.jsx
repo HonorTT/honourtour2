@@ -17,38 +17,39 @@ import JsonLd from "@/components/common/JsonLd";
 import { buildMetadata, organizationSchema, websiteSchema } from "@/lib/seo";
 import { getHomeContent } from "@/lib/homeContent";
 
-export const metadata = buildMetadata({
-  title: "Kashmir Tour Packages | Srinagar, Gulmarg, Pahalgam — Honor Tour & Travels",
-  description:
-    "Kashmir tour packages from Honor Tour & Travels — Srinagar houseboats, Gulmarg gondola, Pahalgam and Sonmarg, with stays, transport and sightseeing in one price. Ladakh, Himachal and more of India too.",
-  path: "/",
-});
+export async function generateMetadata() {
+  const { settings } = await getHomeContent();
+  return buildMetadata({ title: settings.metaTitle, description: settings.metaDescription, path: "/" });
+}
+
 
 export default async function Home() {
   const content = await getHomeContent();
+  const s = content.settings;
 
   return (
     <div className="min-h-screen bg-[#ffffff] text-[#0F172A]">
       <JsonLd schema={[organizationSchema(), websiteSchema()]} />
       <Navbar />
-      <HeroSection cards={content.heroCards} destinations={content.destinations} />
+      <HeroSection cards={content.heroCards} destinations={content.destinations} settings={s} />
 
       <main className="mx-auto flex w-full max-w-[1280px] flex-col pb-16">
-        <DestinationStrip destinations={content.destinations} />
-        <LiveTours cards={content.liveTourCards} trustReviews={content.trustReviews} />
-        <ChinaPromo promoPackages={content.chinaPromoPackages} />
+        <DestinationStrip destinations={content.destinations} settings={s} />
+        <LiveTours cards={content.liveTourCards} trustReviews={content.trustReviews} settings={s} />
+        <ChinaPromo promoPackages={content.chinaPromoPackages} settings={s} />
         <MostLovedTours
           promoSlides={content.promoSlides}
           promoDestinations={content.mostLovedPromoDestinations}
           destinations={content.mostLovedDestinations}
+          settings={s}
         />
-        <TrustReviews stats={content.trustStats} reviews={content.trustReviews} />
-        <FeaturedTour slides={content.featuredTours} />
-        <ContinueTravel tours={content.continueTravelTours} />
-        <DepartureCities cities={content.departureCities} />
-        <TourInclusions features={content.tourInclusionFeatures} />
-        <SeoContent />
-        <FAQ content={content.faq} />
+        <TrustReviews stats={content.trustStats} reviews={content.trustReviews} settings={s} />
+        <FeaturedTour slides={content.featuredTours} settings={s} />
+        <ContinueTravel tours={content.continueTravelTours} settings={s} />
+        <DepartureCities cities={content.departureCities} settings={s} />
+        <TourInclusions features={content.tourInclusionFeatures} settings={s} />
+        <SeoContent settings={s} />
+        <FAQ content={content.faq} settings={s} />
       </main>
       <Footer />
       <FloatingActions />

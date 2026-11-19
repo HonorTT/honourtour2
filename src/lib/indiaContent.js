@@ -1,4 +1,6 @@
 import { db } from "./db.js";
+import { isDraftedPlace } from "@/data/draftFilter";
+import { getDraftDestinations } from "./destinationStatus.js";
 
 /* =========================================================
    /india PAGE CONTENT
@@ -24,7 +26,8 @@ function groupBy(rows, key, pick) {
 const CITY_GROUPS = new Set(["city", "state"]);
 
 export async function getIndiaContent() {
-  const [zoneCards, tiles, interests, durations, blogs, reviews, faqs] = await Promise.all([
+  const [drafts, zoneCardRows, tileRows, interests, durations, blogs, reviews, faqs] = await Promise.all([
+    getDraftDestinations(),
     db.indiaZoneCard.findMany(byOrder),
     db.indiaExploreTile.findMany(byOrder),
     db.indiaExploreInterest.findMany(byOrder),
@@ -33,6 +36,11 @@ export async function getIndiaContent() {
     db.indiaReview.findMany(byOrder),
     db.indiaFaq.findMany(byOrder),
   ]);
+
+  // Cards and tiles link by name ("/india/{name}-tour-packages"), so a drafted
+  // place is matched the same way and left out.
+  const zoneCards = zoneCardRows.filter((row) => !isDraftedPlace({ name: row.name }, drafts));
+  const tiles = tileRows.filter((row) => !isDraftedPlace({ name: row.name }, drafts));
 
   // the tile components call the gradient `style`; the collection stores `visual`
   const asTile = ({ name, tours, visual, image }) => ({ name, tours, style: visual, image });

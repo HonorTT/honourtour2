@@ -82,6 +82,8 @@ export async function searchFlights(input) {
     searchId: result?.searchId ?? null,
     params,
     offers,
+    // Suppliers that sell on their own site hand back where to send the customer.
+    bookingUrl: result?.bookingUrl ?? null,
     searchedAt: new Date().toISOString(),
   };
 }

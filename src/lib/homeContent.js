@@ -1,4 +1,5 @@
 import { db } from "./db.js";
+import { withHomeDefaults } from "@/data/homeDefaults";
 
 /* =========================================================
    HOME PAGE CONTENT
@@ -30,6 +31,7 @@ export async function getHomeContent() {
     tourInclusionFeatures,
     faqItems,
     departureCities,
+    settingsRows,
   ] = await Promise.all([
     db.heroCard.findMany(byOrder),
     db.homeDestination.findMany(byOrder),
@@ -45,9 +47,12 @@ export async function getHomeContent() {
     db.tourInclusionFeature.findMany(byOrder),
     db.faqItem.findMany(byOrder),
     db.departureCity.findMany(byOrder),
+    db.homeSettings.findMany({ take: 1 }),
   ]);
 
   return {
+    // Headings, copy and fixed photos (admin: Home Page -> Text & Photos).
+    settings: withHomeDefaults(settingsRows[0]),
     heroCards,
     destinations,
     liveTourCards,
@@ -73,6 +78,7 @@ export async function getHomeContent() {
     departureCities: departureCities.map((city) => ({
       name: city.name,
       slug: city.slug,
+      image: city.image || null,
       departures: `${city.departures} Departures`,
       startingPrice: `₹${city.startingPrice.toLocaleString("en-IN")}`,
     })),

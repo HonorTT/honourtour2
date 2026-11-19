@@ -6,9 +6,12 @@ import { useState } from "react";
 import Link from "@/components/common/SiteLink";
 import { Award, CalendarDays, ChevronLeft, ChevronRight, ShieldCheck, ArrowRight } from "lucide-react";
 import { homeData } from "@/data/homeData";
-import { getDestinationImage } from "@/data/destinationImages";
+import { HOME_DEFAULTS, splitHighlights } from "@/data/homeDefaults";
 
-export default function ChinaPromo({ promoPackages }) {
+const HIGHLIGHT = ["text-[#17BEBB]", "text-[#0F4C81]"];
+
+export default function ChinaPromo({ promoPackages, settings = HOME_DEFAULTS }) {
+  const s = settings;
   const chinaPromo = {
     ...homeData.chinaPromo,
     packages: promoPackages?.length ? promoPackages : homeData.chinaPromo.packages,
@@ -31,7 +34,7 @@ export default function ChinaPromo({ promoPackages }) {
               <div className="flex items-start justify-between gap-3">
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-[#E6F7F5] px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-[#0F4C81]">
                   <Award className="h-3.5 w-3.5" />
-                  Legacy of Excellence
+                  {s.promoBadge}
                 </span>
 
                 {packages.length > 4 && (
@@ -57,12 +60,19 @@ export default function ChinaPromo({ promoPackages }) {
               </div>
 
               <h2 className="mt-3 text-[26px] font-black italic leading-[1.15] text-[#0F172A] sm:text-[32px] lg:mt-2 lg:text-[34px] lg:leading-[1.15]">
-                <span className="text-[#17BEBB]">Paradise</span> on Earth.{" "}
-                <span className="text-[#0F4C81]">Planned</span> to the detail.
+                {splitHighlights(s.promoHeading, s.promoHighlights).map((part, i) =>
+                  part.hi === undefined ? (
+                    <span key={i}>{part.text}</span>
+                  ) : (
+                    <span key={i} className={HIGHLIGHT[part.hi % HIGHLIGHT.length]}>
+                      {part.text}
+                    </span>
+                  ),
+                )}
               </h2>
 
               <p className="mt-3 text-[14px] font-semibold italic text-[#17BEBB] sm:text-[15px] lg:mt-1.5 lg:text-[14px]">
-                All-inclusive Kashmir tours, run by our own team in the valley
+                {s.promoSubtitle}
               </p>
 
               <CardRail className="mt-5 flex gap-3 overflow-x-auto pb-1 no-scrollbar snap-x snap-mandatory sm:grid sm:grid-cols-4 sm:overflow-visible sm:pb-0 md:mt-6 lg:mt-4" label="packages">
@@ -91,8 +101,8 @@ export default function ChinaPromo({ promoPackages }) {
             {/* IMAGE — bleeds to the box edge */}
             <div className="relative order-1 h-[220px] w-full overflow-hidden rounded-[20px] lg:order-2 lg:h-[320px] lg:self-center">
               <Image
-                src={getDestinationImage("kashmir")}
-                alt="Kashmir"
+                src={s.promoImage}
+                alt={s.promoImageBadge || s.promoHeading}
                 className="object-cover"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -101,7 +111,7 @@ export default function ChinaPromo({ promoPackages }) {
 
               <div className="absolute left-3 top-3 flex items-center gap-1.5 rounded-full bg-black/55 px-3 py-1.5 text-[11px] font-semibold text-white backdrop-blur-sm">
                 <ShieldCheck className="h-3.5 w-3.5" />
-                Trusted by 50,000+ Travelers
+                {s.promoImageBadge}
               </div>
             </div>
           </div>
@@ -116,13 +126,13 @@ export default function ChinaPromo({ promoPackages }) {
                 <CalendarDays className="h-4 w-4" />
               </span>
               <div className="min-w-0">
-                <p className="text-[13px] font-bold leading-tight text-[#0F172A]">Book Your Dream Tour</p>
-                <p className="truncate text-[11px] text-[#64748B]">365 days, 24*7 from your city!</p>
+                <p className="text-[13px] font-bold leading-tight text-[#0F172A]">{s.promoCardTitle}</p>
+                <p className="truncate text-[11px] text-[#64748B]">{s.promoCardText}</p>
               </div>
             </div>
 
             <span className="mt-2.5 flex h-9 w-full items-center justify-center gap-1.5 rounded-[10px] bg-[#FF7A1A] text-[13px] font-bold text-white shadow-[0_4px_12px_rgba(255,122,26,0.3)] transition hover:bg-[#E56A0F]">
-              Book Online
+              {s.promoCardButton}
               <ArrowRight className="h-3.5 w-3.5" />
             </span>
           </Link>

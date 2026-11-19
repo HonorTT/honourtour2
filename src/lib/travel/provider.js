@@ -2,6 +2,7 @@ import "server-only";
 
 import { unconfiguredProvider } from "./providers/unconfigured.js";
 import { templateProvider } from "./providers/template.js";
+import { flyAndSailProvider } from "./providers/flyandsail.js";
 import { notConfigured, notSupported } from "./errors.js";
 
 /* =========================================================
@@ -24,7 +25,7 @@ import { notConfigured, notSupported } from "./errors.js";
 const ADAPTERS = {
   unconfigured: unconfiguredProvider,
   template: templateProvider,
-  // TODO: register the real supplier here, e.g. tbo: tboProvider,
+  flyandsail: flyAndSailProvider,
 };
 
 let warned = false;

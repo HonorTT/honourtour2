@@ -48,7 +48,7 @@ export default function FlightResultCard({ flight, from, to, airlines = [], onBo
           <p className="text-[17px] font-bold leading-tight text-[#0F172A]">
             ₹{flight.price.toLocaleString("en-IN")}
           </p>
-          <p className="text-[11px] text-[#6B7280]">/ person</p>
+          <p className="text-[11px] text-[#6B7280]">{flight.priceLabel ?? "/ person"}</p>
         </div>
       </div>
 
@@ -68,7 +68,10 @@ export default function FlightResultCard({ flight, from, to, airlines = [], onBo
         </div>
 
         <div className="text-center">
-          <p className="text-[16px] font-bold text-[#0F172A]">{flight.arrivalTime}</p>
+          <p className="text-[16px] font-bold text-[#0F172A]">
+            {flight.arrivalTime}
+            {flight.arrivesNextDay && <sup className="ml-0.5 text-[10px] font-bold text-[#FF7A1A]">+1</sup>}
+          </p>
           <p className="text-[12px] text-[#6B7280]">
             {flight.toCode} {to}
           </p>
@@ -80,7 +83,7 @@ export default function FlightResultCard({ flight, from, to, airlines = [], onBo
         <div className="sm:text-right">
           <p className="hidden text-[17px] font-bold text-[#0F172A] sm:block">
             ₹{flight.price.toLocaleString("en-IN")}
-            <span className="ml-1 text-[12px] font-normal text-[#6B7280]">/ person</span>
+            <span className="ml-1 text-[12px] font-normal text-[#6B7280]">{flight.priceLabel ?? "/ person"}</span>
           </p>
           <p
             className={`text-[12px] font-medium ${
@@ -96,7 +99,7 @@ export default function FlightResultCard({ flight, from, to, airlines = [], onBo
           onClick={() => onBookNow(flight)}
           className="h-[42px] flex-1 rounded-[10px] bg-[#FF7A1A] px-4 text-[13px] font-bold text-white shadow-[0_4px_12px_rgba(255,122,26,0.3)] transition hover:-translate-y-0.5 hover:bg-[#E56A0F] sm:w-auto sm:flex-none"
         >
-          Book Now
+          {flight.bookLabel ?? "Book Now"}
         </button>
       </div>
     </article>

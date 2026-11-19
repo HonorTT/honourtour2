@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { db } from "@/lib/db";
 import { getModule, listFields } from "@/lib/adminModules";
 import AdminTable from "@/components/admin/AdminTable";
@@ -7,6 +7,13 @@ export default async function AdminModuleListPage({ params }) {
   const { module: moduleSlug } = await params;
   const moduleConfig = getModule(moduleSlug);
   if (!moduleConfig) notFound();
+
+  // A settings page has exactly one record: open it, creating it on first visit.
+  if (moduleConfig.singleton) {
+    const existing = await db[moduleConfig.model].findFirst({ select: { id: true } });
+    const record = existing ?? (await db[moduleConfig.model].create({ data: { ...(moduleConfig.defaults ?? {}), order: 0 } }));
+    redirect(`/admin/${moduleSlug}/${record.id}/edit`);
+  }
 
   // Only the columns the table draws. Reading whole records sent the entire
   // catalogue — itineraries, FAQs, SEO copy — to the browser twice over:

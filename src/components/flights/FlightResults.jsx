@@ -15,7 +15,9 @@ function getTimeSlot(departureTime) {
   return "night";
 }
 
-export default function FlightResults({ route, airlines: airlineLogos = [] }) {
+// `onBookNow` replaces the request-a-booking modal, e.g. with a hand-off to the
+// supplier's own checkout. `heading` names the list ("Return flights").
+export default function FlightResults({ route, airlines: airlineLogos = [], onBookNow, heading }) {
   const { flights, from, to, fromCode, toCode } = route;
 
   const airlineOptions = useMemo(
@@ -108,7 +110,8 @@ export default function FlightResults({ route, airlines: airlineLogos = [] }) {
         <div className="flex flex-col gap-2 pb-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h2 className="text-[16px] font-bold text-[#0F172A]">
-              {filteredFlights.length} Flight Options
+              {heading ? `${heading} · ` : ""}
+              {filteredFlights.length} Flight Option{filteredFlights.length === 1 ? "" : "s"}
             </h2>
             <p className="text-[13px] text-[#6B7280]">
               {from} ({fromCode}) to {to} ({toCode})
@@ -163,7 +166,7 @@ export default function FlightResults({ route, airlines: airlineLogos = [] }) {
                 from={from}
                 to={to}
                 airlines={airlineLogos}
-                onBookNow={setSelectedFlight}
+                onBookNow={onBookNow ?? setSelectedFlight}
               />
             ))}
           </div>

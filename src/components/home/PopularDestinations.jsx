@@ -5,6 +5,7 @@ import Image from "@/components/common/SiteImage";
 import Link from "@/components/common/SiteLink";
 import { ChevronRight, MapPin } from "lucide-react";
 import CardRail from "@/components/common/CardRail";
+import { HOME_DEFAULTS } from "@/data/homeDefaults";
 
 /* =========================================================
    POPULAR DESTINATIONS
@@ -14,7 +15,7 @@ import CardRail from "@/components/common/CardRail";
    panel resting on the bottom of the image.
 ========================================================= */
 
-export default function PopularDestinations({ items = [], groups = [] }) {
+export default function PopularDestinations({ items = [], groups = [], settings = HOME_DEFAULTS }) {
   const [active, setActive] = useState(groups[0] ?? "All");
 
   const visible = active === "All" ? items : items.filter((item) => item.region === active);
@@ -24,10 +25,10 @@ export default function PopularDestinations({ items = [], groups = [] }) {
       <div className="flex items-end justify-between gap-4">
         <div>
           <h2 className="text-[24px] font-bold leading-tight text-[#0F172A] sm:text-[30px]">
-            Kashmir &amp; beyond
+            {settings.stripHeading}
           </h2>
           <p className="mt-1.5 text-[14px] font-light text-[#60646C]">
-            Srinagar, Gulmarg, Pahalgam and Sonmarg — plus the other India tours we run.
+            {settings.stripSubtitle}
           </p>
         </div>
       </div>
@@ -35,7 +36,7 @@ export default function PopularDestinations({ items = [], groups = [] }) {
       <div className="mt-6 grid gap-5 lg:grid-cols-[210px_minmax(0,1fr)] lg:gap-6">
         {/* CATEGORY PANEL */}
         <div className="rounded-[18px] bg-white p-3 shadow-[0_4px_18px_rgba(15,23,42,0.07)] lg:self-start lg:p-4">
-          <p className="px-1 pb-2 text-[14px] font-bold text-[#0F172A] lg:pb-3">Package Offers</p>
+          <p className="px-1 pb-2 text-[14px] font-bold text-[#0F172A] lg:pb-3">{settings.stripOffersLabel}</p>
 
           <div className="flex gap-2 overflow-x-auto no-scrollbar lg:flex-col lg:gap-0 lg:overflow-visible">
             {groups.map((group, index) => {

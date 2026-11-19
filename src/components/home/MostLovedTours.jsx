@@ -4,8 +4,9 @@ import Link from "@/components/common/SiteLink";
 import { Heart } from "lucide-react";
 import { homeData } from "@/data/homeData";
 import PromoCarousel from "./PromoCarousel";
+import { HOME_DEFAULTS } from "@/data/homeDefaults";
 
-export default function MostLovedTours({ promoDestinations, destinations, promoSlides }) {
+export default function MostLovedTours({ promoDestinations, destinations, promoSlides, settings = HOME_DEFAULTS }) {
   const mostLovedTours = {
     ...homeData.mostLovedTours,
     promoDestinations: promoDestinations?.length
@@ -20,7 +21,7 @@ export default function MostLovedTours({ promoDestinations, destinations, promoS
         <div className="grid gap-5 md:gap-6 lg:grid-cols-[32%_1fr]">
 
           {/* ================= LEFT: PROMOTIONAL BANNER CAROUSEL ================= */}
-          <PromoCarousel slides={promoSlides} />
+          <PromoCarousel slides={promoSlides} settings={settings} promoDestinations={mostLovedTours.promoDestinations} />
 
           {/* ================= RIGHT: MOST LOVED GRID ================= */}
           <div className="min-w-0 overflow-hidden rounded-[16px] border border-[#E5E7EB] bg-[#F7FAFC] p-4 sm:p-5">
@@ -28,7 +29,7 @@ export default function MostLovedTours({ promoDestinations, destinations, promoS
               <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-white shadow-sm">
                 <Heart className="h-4 w-4 fill-[#FF6B6B] text-[#FF6B6B]" />
               </div>
-              <h3 className="text-[24px] font-bold leading-tight text-[#0F172A] sm:text-[30px]">Most Loved by Our Guests</h3>
+              <h3 className="text-[24px] font-bold leading-tight text-[#0F172A] sm:text-[30px]">{settings.mostLovedHeading}</h3>
             </div>
 
             <CardRail className="mt-4 flex gap-3 overflow-x-auto pb-2 no-scrollbar snap-x snap-mandatory sm:grid sm:grid-cols-2 sm:gap-3 sm:overflow-visible lg:grid-cols-4">

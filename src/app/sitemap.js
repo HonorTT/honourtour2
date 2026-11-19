@@ -1,6 +1,7 @@
 import { SITE_URL } from "@/lib/seo";
 import { getPackageSlugs } from "@/lib/packages";
 import { getDestinationParamsFromDb } from "@/lib/destinations";
+import { getDraftDestinations } from "@/lib/destinationStatus";
 import { getDepartureCityParamsFromDb } from "@/lib/departureCities";
 import { getDestinationParams } from "@/data/destinations";
 import { getCityPageTarget } from "@/data/navigationData";
@@ -49,9 +50,11 @@ export default async function sitemap() {
     getDepartureCityParamsFromDb(),
   ]);
 
-  // A city page only redirects to its state now, so it is not listed.
+  // A city page only redirects to its state now, and a drafted page is a 404,
+  // so neither is listed.
+  const drafts = await getDraftDestinations();
   const indiaDestinations = merge(indiaFromDb, getDestinationParams("india"), "destination").filter(
-    ({ destination }) => !getCityPageTarget(destination),
+    ({ destination }) => !getCityPageTarget(destination) && !drafts.slugs.includes(destination),
   );
   const departureCities = merge(citiesFromDb, getDepartureCityParams(), "city");
 

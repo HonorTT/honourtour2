@@ -45,6 +45,8 @@ import FAQAccordion from "@/components/common/FAQAccordion";
 import { withPackageDefaults } from "@/lib/packageDefaults";
 import { resolveSlug } from "@/lib/slugHistory";
 import { buildMetadata, breadcrumbSchema, faqSchema, tourSchema } from "@/lib/seo";
+import { isDraftedPlace } from "@/data/draftFilter";
+import { getDraftDestinations } from "@/lib/destinationStatus";
 
 function upgradeIcon(title) {
   const lower = title.toLowerCase();
@@ -158,12 +160,17 @@ export default async function PackageDetailPage({ params }) {
     return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-+|-+$)/g, "");
   }
 
-  const categoryCrumb = tour.state
+  const stateCrumb = tour.state
     ? {
         label: tour.state,
         href: `/india/${stateSlugOverrides[tour.state] || `${slugifyName(tour.state)}-tour-packages`}`,
       }
     : null;
+
+  // A drafted state has no page, so the breadcrumb skips it instead of linking to a 404.
+  const drafts = await getDraftDestinations();
+  const categoryCrumb =
+    stateCrumb && !isDraftedPlace({ href: stateCrumb.href, name: stateCrumb.label }, drafts) ? stateCrumb : null;
 
   const catalog = await getAllPackages();
 

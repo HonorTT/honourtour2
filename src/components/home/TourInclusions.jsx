@@ -1,5 +1,6 @@
 import { Bed, Utensils, Bus, Users, Map, Plane, Check } from "lucide-react";
 import { homeData } from "@/data/homeData";
+import { HOME_DEFAULTS } from "@/data/homeDefaults";
 
 /* =========================================================
    WHAT EVERY TOUR INCLUDES
@@ -11,7 +12,7 @@ import { homeData } from "@/data/homeData";
 
 const iconMap = { Bed, Utensils, Bus, Users, Map, Plane };
 
-export default function TourInclusions({ features }) {
+export default function TourInclusions({ features, settings = HOME_DEFAULTS }) {
   const tourInclusions = {
     ...homeData.tourInclusions,
     features: features?.length ? features : homeData.tourInclusions.features,
@@ -23,15 +24,15 @@ export default function TourInclusions({ features }) {
         <div className="mx-auto max-w-[620px] text-center">
           <span className="inline-flex items-center gap-2 rounded-full bg-[#E6F7F5] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#0F4C81]">
             <Check className="h-3.5 w-3.5" />
-            All inclusive
+            {settings.inclusionsBadge}
           </span>
 
           <h2 className="mt-4 text-[24px] font-bold leading-tight text-[#0F172A] sm:text-[30px]">
-            Everything is included, Chalo Bag Bharo Nikal Pado!
+            {settings.inclusionsHeading}
           </h2>
 
           <p className="mt-3 text-[14px] font-light leading-relaxed text-[#60646C]">
-            One price covers the whole trip — no surprise add-ons once you have booked.
+            {settings.inclusionsSubtitle}
           </p>
         </div>
 

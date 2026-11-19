@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, MapPin } from "lucide-react";
 import { homeData } from "@/data/homeData";
+import { HOME_DEFAULTS } from "@/data/homeDefaults";
+import Image from "@/components/common/SiteImage";
 
 /* =========================================================
    ILLUSTRATED POSTER SLIDES
@@ -57,26 +59,27 @@ function PosterSlide({ slide, compact = false }) {
 const AUTO_SLIDE_MS = 5000;
 const SWIPE_THRESHOLD = 40;
 
-function WelcomeSlide() {
-  const { mostLovedTours } = homeData;
+function WelcomeSlide({ s, places }) {
 
   return (
     <div className="flex h-full flex-col justify-center bg-white p-5 sm:p-6">
       <div className="text-center">
         <h3 className="text-[24px] font-black leading-[1.1] text-[#0F172A] sm:text-[26px]">
-          Honor Tour & Travels is Here!
+          {s.welcomeTitle}
         </h3>
-        <p className="mt-1 text-[14px] font-bold text-[#0F4C81]">PAISA VASOOL Tours</p>
+        <p className="mt-1 text-[14px] font-bold text-[#0F4C81]">{s.welcomeSubtitle}</p>
 
         <span className="mt-3 inline-block rounded-full bg-[#0F172A] px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-[#FBB627]">
-          Now welcoming you at
+          {s.welcomeBadge}
         </span>
       </div>
 
       <div className="mt-5 grid grid-cols-3 gap-2">
-        {mostLovedTours.promoDestinations.map((dest) => (
+        {places.map((dest) => (
           <div key={dest.name} className="overflow-hidden rounded-[10px] border border-[#E5E7EB]">
-            <div className="relative h-[150px] bg-gradient-to-br from-[#4DA8DA] via-[#0F4C81] to-[#17BEBB]" />
+            <div className="relative h-[150px] bg-gradient-to-br from-[#4DA8DA] via-[#0F4C81] to-[#17BEBB]">
+              {dest.image && <Image src={dest.image} alt={dest.name} fill sizes="120px" className="object-cover" />}
+            </div>
             <div className="flex items-center justify-center gap-1 bg-white py-1.5">
               <MapPin className="h-3 w-3 flex-shrink-0 text-[#0F4C81]" />
               <span className="truncate text-[11px] font-semibold text-[#0F172A]">{dest.name}</span>
@@ -86,32 +89,33 @@ function WelcomeSlide() {
       </div>
 
       <p className="mt-5 text-center text-[14px] italic leading-relaxed text-[#475569]">
-        Chalo, Bag Bharo, Nikal Pado!
+        {s.welcomeTagline}
       </p>
 
       <div className="mt-5 border-t border-[#E5E7EB] pt-3">
         <p className="text-center text-[11px] font-semibold uppercase tracking-wide text-[#60646C]">
-          India &bull; Group Tours &bull; Customized Holidays
+          {s.welcomeFooter}
         </p>
       </div>
     </div>
   );
 }
 
-function WelcomeCardCompact() {
-  const { mostLovedTours } = homeData;
+function WelcomeCardCompact({ s, places }) {
 
   return (
     <div className="flex h-full flex-col justify-center bg-white px-3.5 py-3">
       <div className="text-center">
-        <h3 className="text-[16px] font-black leading-tight text-[#0F172A]">Honor Tour & Travels is Here!</h3>
-        <p className="text-[11px] font-bold text-[#0F4C81]">PAISA VASOOL Tours</p>
+        <h3 className="text-[16px] font-black leading-tight text-[#0F172A]">{s.welcomeTitle}</h3>
+        <p className="text-[11px] font-bold text-[#0F4C81]">{s.welcomeSubtitle}</p>
       </div>
 
       <div className="mt-2.5 grid grid-cols-3 gap-1.5">
-        {mostLovedTours.promoDestinations.map((dest) => (
+        {places.map((dest) => (
           <div key={dest.name} className="overflow-hidden rounded-[6px] border border-[#E5E7EB]">
-            <div className="h-[30px] bg-gradient-to-br from-[#4DA8DA] via-[#0F4C81] to-[#17BEBB]" />
+            <div className="relative h-[30px] bg-gradient-to-br from-[#4DA8DA] via-[#0F4C81] to-[#17BEBB]">
+              {dest.image && <Image src={dest.image} alt={dest.name} fill sizes="80px" className="object-cover" />}
+            </div>
             <div className="bg-white py-1 text-center">
               <span className="truncate text-[9px] font-semibold text-[#0F172A]">{dest.name}</span>
             </div>
@@ -120,13 +124,14 @@ function WelcomeCardCompact() {
       </div>
 
       <p className="mt-2.5 text-center text-[11px] italic leading-snug text-[#475569]">
-        Chalo, Bag Bharo, Nikal Pado!
+        {s.welcomeTagline}
       </p>
     </div>
   );
 }
 
-export default function PromoCarousel({ slides }) {
+export default function PromoCarousel({ slides, settings = HOME_DEFAULTS, promoDestinations }) {
+  const places = promoDestinations?.length ? promoDestinations : homeData.mostLovedTours.promoDestinations;
   const promoSlides = slides?.length ? slides : FALLBACK_SLIDES;
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -168,7 +173,7 @@ export default function PromoCarousel({ slides }) {
             key={slide.id}
             className="h-[190px] w-[88%] flex-shrink-0 snap-start overflow-hidden rounded-[10px] border border-[#E5E7EB] shadow-sm"
           >
-            {slide.type === "welcome" ? <WelcomeCardCompact /> : <PosterSlide slide={slide} compact />}
+            {slide.type === "welcome" ? <WelcomeCardCompact s={settings} places={places} /> : <PosterSlide slide={slide} compact />}
           </div>
         ))}
       </div>
@@ -187,7 +192,7 @@ export default function PromoCarousel({ slides }) {
         >
           {promoSlides.map((slide) => (
             <div key={slide.id} className="h-full w-full flex-shrink-0">
-              {slide.type === "welcome" ? <WelcomeSlide /> : <PosterSlide slide={slide} />}
+              {slide.type === "welcome" ? <WelcomeSlide s={settings} places={places} /> : <PosterSlide slide={slide} />}
             </div>
           ))}
         </div>

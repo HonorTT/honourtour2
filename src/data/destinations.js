@@ -1,6 +1,7 @@
 import { packages } from "./packages.js";
 import { getCityNamesUnder, getParentNamesFor, getSiblingCityNames, getSiblingRegionNames } from "./navigationData.js";
 import { isIndiaPackage } from "./packageRegion.js";
+import { isDraftedPlace, placeWords } from "./draftFilter.js";
 
 /* =========================================================
    RAW DESTINATION DATA
@@ -797,7 +798,7 @@ function toSlug(name) {
     .replace(/(^-+|-+$)/g, "");
 }
 
-function buildDestinationConfig(raw, catalogue = packages) {
+function buildDestinationConfig(raw, catalogue = packages, drafts = null) {
   // A stored list is treated as a deliberate pin; otherwise the tours are
   // matched live, so catalogue edits flow through to every destination page.
   const pinned = (raw.packageSlugs || [])
@@ -839,7 +840,7 @@ function buildDestinationConfig(raw, catalogue = packages) {
         "Mumbai", "Delhi", "Ahmedabad", "Bangalore", "Hyderabad", "Kolkata", "Pune", "Chennai", "Cochin", "Indore",
       ].map((city) => `${city}`),
       countries: raw.countries,
-      cities: filterCities(raw, resolvedPackages),
+      cities: filterCities(raw, resolvedPackages).filter((city) => !isDraftedPlace({ name: city.replace(/\s*\(.*\)\s*$/, "") }, drafts)),
       durations: ["3 - 5 Days", "6 - 8 Days", "9 - 14 Days", "15+ Days"],
       packageTypes: ["Group Tour", "Customized Holidays"],
       specialityTours: ["Family", "Honeymoon Special", "Women's Special", "Seniors' Special", "Short Trips"],
@@ -1172,7 +1173,12 @@ export function getDestination(parent, slug, records, catalogue) {
     ? [...records, ...rawDestinations.filter((item) => !records.some((r) => r.parent === item.parent && r.slug === item.slug))]
     : rawDestinations;
   const raw = source.find((item) => item.parent === parent && item.slug === slug);
-  if (raw) return { raw, config: buildDestinationConfig(raw, catalogue) };
+
+  // Drafted places are left out of this page's filters and links.
+  const draftRows = (records ?? []).filter((item) => item.status === "Draft");
+  const drafts = { slugs: draftRows.map((item) => item.slug), names: draftRows.map((item) => placeWords(item.name)) };
+
+  if (raw) return { raw, config: buildDestinationConfig(raw, catalogue, drafts) };
   return synthesizeDestination(parent, slug, catalogue);
 }
 

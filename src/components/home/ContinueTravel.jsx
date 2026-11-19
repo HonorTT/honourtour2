@@ -4,8 +4,9 @@ import Link from "@/components/common/SiteLink";
 import { ArrowRight } from "lucide-react";
 import { homeData } from "@/data/homeData";
 import { getDestinationImage } from "@/data/destinationImages";
+import { HOME_DEFAULTS } from "@/data/homeDefaults";
 
-export default function ContinueTravel({ tours }) {
+export default function ContinueTravel({ tours, settings = HOME_DEFAULTS }) {
   const continueTravel = {
     ...homeData.continueTravel,
     tours: tours?.length ? tours : homeData.continueTravel.tours,
@@ -15,10 +16,10 @@ export default function ContinueTravel({ tours }) {
     <section className="bg-[#F7FAFC] px-3 py-12 sm:px-6 sm:py-16 lg:px-8">
       <div className="mx-auto w-full max-w-[1280px]">
         <h2 className="text-[24px] font-bold leading-tight text-[#0F172A] sm:text-[30px]">
-          {continueTravel.heading}
+          {settings.continueHeading}
         </h2>
         <p className="mt-1.5 text-[14px] font-light text-[#60646C]">
-          Pick up where you left off — these tours are still open for your dates.
+          {settings.continueSubtitle}
         </p>
 
         <CardRail className="mt-6 flex gap-3 overflow-x-auto pb-2 no-scrollbar snap-x snap-mandatory md:mt-6 md:gap-4 sm:grid sm:overflow-visible sm:grid-cols-2 lg:grid-cols-4">

@@ -25,8 +25,14 @@ function Column({ heading, items, onNavigate }) {
   );
 }
 
-export default function CustomizedHolidaysMenu({ open, onNavigate, onMouseEnter, onMouseLeave }) {
-  const { indiaHolidays, travelStyle, holidayServices } = CUSTOMIZED_HOLIDAYS_MENU;
+export default function CustomizedHolidaysMenu({
+  open,
+  onNavigate,
+  onMouseEnter,
+  onMouseLeave,
+  indiaHolidays = CUSTOMIZED_HOLIDAYS_MENU.indiaHolidays,
+}) {
+  const { travelStyle, holidayServices } = CUSTOMIZED_HOLIDAYS_MENU;
 
   return (
     <div

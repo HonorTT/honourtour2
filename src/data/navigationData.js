@@ -52,7 +52,7 @@ const indiaOverrides = {
   "Andaman and Nicobar": "andaman-tour-packages",
   // The admin's own records. A city link has to land on them directly, because
   // the redirect from the name-based address would drop ?city=.
-  Kashmir: "kashmir-trip-packages-srinagar-gulmarg-pahalgam-sonamarg",
+  Kashmir: "kashmir-tour-packages-srinagar-gulmarg-pahalgam-sonamarg",
   Sikkim: "sikkim-tour-places-best-sikkim-tour-packages-itinerary",
   "Himachal Pradesh": "himachal-tour-packages-for-family-couples-groups",
   "Leh-Ladakh": "leh-ladakh-holiday-packages-for-family-couples-and-groups",
@@ -267,6 +267,52 @@ function findColumnFor(nav, name) {
       col.heading.name.toLowerCase() === lower ||
       col.items.some((item) => item.name.toLowerCase() === lower)
   );
+}
+
+/**
+ * Points each state at the admin's own record for it, matched by name, so a
+ * slug renamed in the admin never leaves the menu on an old address (the
+ * redirect from an old address would also drop ?city=).
+ */
+export function withRecordSlugs(nav, records = []) {
+  const words = (value) => String(value ?? "").toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, " ").trim();
+  const slugFor = (name) => records.find((record) => record.parent === "india" && words(record.name) === words(name))?.slug;
+
+  return {
+    ...nav,
+    regions: nav.regions.map((region) => ({
+      ...region,
+      columns: region.columns.map((col) => {
+        const slug = slugFor(col.heading.name);
+        if (!slug) return col;
+        const href = `/india/${slug}`;
+        return {
+          heading: { ...col.heading, href },
+          items: col.items.map((item) => ({ ...item, href: `${href}?city=${encodeURIComponent(item.name)}` })),
+        };
+      }),
+    })),
+  };
+}
+
+/**
+ * The menu without drafted destinations. `isDrafted` is called with each link
+ * ({ name, href }); a state that goes takes its cities with it, and a tab left
+ * with nothing in it goes too.
+ */
+export function withoutDrafted(nav, isDrafted) {
+  return {
+    ...nav,
+    recommended: nav.recommended.filter((item) => !isDrafted(item)),
+    regions: nav.regions
+      .map((region) => ({
+        ...region,
+        columns: region.columns
+          .filter((col) => !isDrafted(col.heading))
+          .map((col) => ({ ...col, items: col.items.filter((item) => !isDrafted(item)) })),
+      }))
+      .filter((region) => region.columns.length > 0),
+  };
 }
 
 /** The cities listed under a state's heading; empty for anything but a state. */

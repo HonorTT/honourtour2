@@ -4,6 +4,7 @@ import Image from "@/components/common/SiteImage";
 import { useEffect, useState } from "react";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import { homeData } from "@/data/homeData";
+import { HOME_DEFAULTS } from "@/data/homeDefaults";
 
 /* =========================================================
    LIVE TOURS
@@ -16,7 +17,8 @@ import { homeData } from "@/data/homeData";
 
 const AUTO_SLIDE_MS = 3000;
 
-export default function LiveTours({ cards, trustReviews }) {
+export default function LiveTours({ cards, trustReviews, settings = HOME_DEFAULTS }) {
+  const s = settings;
   const reviews = trustReviews?.length ? trustReviews : homeData.trustReviews.reviews;
   const liveCards = cards?.length ? cards : homeData.liveTours.cards;
   const [reviewIndex, setReviewIndex] = useState(0);
@@ -41,15 +43,15 @@ export default function LiveTours({ cards, trustReviews }) {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
               </span>
-              Live right now
+              {s.liveBadge}
             </span>
 
             <h2 className="mt-4 text-[24px] font-bold leading-tight text-white sm:text-[30px]">
-              27+ tours are on the road with Honor Tour &amp; Travels
+              {s.liveHeading}
             </h2>
 
             <p className="mt-3 text-[14px] font-light leading-relaxed text-white/70">
-              Guests everywhere are travelling with ease and care — step into your journey.
+              {s.liveText}
             </p>
 
             <div className="mt-5 flex flex-wrap items-center gap-3">
@@ -57,10 +59,10 @@ export default function LiveTours({ cards, trustReviews }) {
                 type="button"
                 className="flex h-[44px] items-center gap-2 rounded-full bg-[#FF7A1A] px-5 text-[14px] font-bold text-white transition hover:-translate-y-0.5 hover:bg-[#E56A0F]"
               >
-                Upcoming Departures
+                {s.liveButton}
                 <ArrowRight className="h-4 w-4" />
               </button>
-              <span className="text-[13px] font-light italic text-white/60">in the next 15 days</span>
+              <span className="text-[13px] font-light italic text-white/60">{s.liveButtonNote}</span>
             </div>
           </div>
 

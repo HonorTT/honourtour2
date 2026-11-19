@@ -18,11 +18,14 @@ const AIRLINE_STYLES = {
 
 const FALLBACK_STYLE = { bg: "#0F4C81", text: "#FFFFFF" };
 
+// Suppliers spell names their own way ("Spicejet", "Indigo"); match loosely.
+const sameName = (a, b) => String(a ?? "").toLowerCase().replace(/s+/g, "") === String(b ?? "").toLowerCase().replace(/s+/g, "");
+
 // `dbAirlines` (from the Airline admin module) takes priority when present,
 // so whatever logo the site owner uploads in /admin/airlines is what shows —
 // this static map is only the fallback for an airline not yet added there.
 export function getAirlineBadge(airlineName, dbAirlines = []) {
-  const dbMatch = dbAirlines.find((a) => a.name === airlineName);
+  const dbMatch = dbAirlines.find((a) => sameName(a.name, airlineName));
   if (dbMatch) {
     return {
       code: dbMatch.code,
@@ -32,7 +35,7 @@ export function getAirlineBadge(airlineName, dbAirlines = []) {
     };
   }
 
-  const style = AIRLINE_STYLES[airlineName];
+  const style = Object.entries(AIRLINE_STYLES).find(([name]) => sameName(name, airlineName))?.[1];
   const code = style?.code || airlineName?.slice(0, 2).toUpperCase() || "?";
   const logoUrl = style?.logoFile
     ? `https://commons.wikimedia.org/wiki/Special:FilePath/${style.logoFile}?width=240`
