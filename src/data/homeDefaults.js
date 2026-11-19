@@ -34,10 +34,10 @@ export const HOME_DEFAULTS = {
   heroScriptLine: "Collect Moments",
   heroScriptNote: "Not things",
   polaroid1Label: "Kashmir",
-  polaroid1Image: "/uploads/destinations/anuj-yadav-1KehhzFg_Q0-unsplash.jpg",
+  polaroid1Image: "/uploads/destinations/yasser-mir-Ctd--w6W-bw-unsplash.jpg",
   polaroid1Link: "",
   polaroid2Label: "Ladakh",
-  polaroid2Image: "/uploads/destinations/darshan-chudasama-s5x1zFAuAbs-unsplash.jpg",
+  polaroid2Image: "/uploads/destinations/darshan-chudasama-uWitPuPAzPA-unsplash.jpg",
   polaroid2Link: "",
 
   // Destination strip
@@ -57,7 +57,7 @@ export const HOME_DEFAULTS = {
   promoHeading: "Paradise on Earth. Planned to the detail.",
   promoHighlights: "Paradise, Planned",
   promoSubtitle: "All-inclusive Kashmir tours, run by our own team in the valley",
-  promoImage: "/uploads/destinations/anuj-yadav-1KehhzFg_Q0-unsplash.jpg",
+  promoImage: "/uploads/destinations/arif-khan-4hr8MStXT7s-unsplash.jpg",
   promoImageBadge: "Trusted by 50,000+ Travelers",
   promoCardTitle: "Book Your Dream Tour",
   promoCardText: "365 days, 24*7 from your city!",

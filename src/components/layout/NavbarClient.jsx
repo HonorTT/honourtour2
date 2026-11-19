@@ -246,16 +246,16 @@ export default function NavbarClient({ indiaNavigation, indiaHolidays = CUSTOMIZ
           />
         </Link>
 
-        {/* DESKTOP NAV */}
-        <nav className="ml-auto hidden items-center lg:flex">
-          <div className="flex items-center whitespace-nowrap text-[12.5px] font-medium">
+        {/* DESKTOP NAV — centred between the logo and the buttons on the right */}
+        <nav className="mx-auto hidden items-center lg:flex">
+          <div className="flex items-center whitespace-nowrap text-[14.5px] font-medium xl:text-[15.5px]">
             {links.map((link) => {
               const isMega = Boolean(link.megaMenu);
               const isActive = isMega && openMenu === link.megaMenu;
 
               const inner = (
                 <div
-                  className={`relative flex h-[68px] items-center gap-1.5 transition-colors after:absolute after:inset-x-2 after:bottom-0 after:h-[2px] after:rounded-full after:transition-colors px-2 ${
+                  className={`relative flex h-[68px] items-center gap-1.5 transition-colors after:absolute after:inset-x-2 after:bottom-0 after:h-[2px] after:rounded-full after:transition-colors px-1.5 xl:px-2.5 ${
                     isActive
                       ? "text-white after:bg-[#17BEBB]"
                       : "text-white/80 after:bg-transparent hover:text-white hover:after:bg-white/30"
@@ -313,10 +313,11 @@ export default function NavbarClient({ indiaNavigation, indiaHolidays = CUSTOMIZ
           </div>
         </nav>
 
-        {/* CALL PILL — widest screens only, where the links leave room */}
+        {/* CALL PILL — on wide screens; from 1400px "Plan My Trip" takes its place,
+            since both together leave the bigger links no room. */}
         <a
           href={CONTACT.phoneHref}
-          className="ml-4 hidden shrink-0 items-center gap-1.5 rounded-full border border-white/30 px-3.5 py-1.5 text-[12.5px] font-semibold text-white no-underline transition hover:bg-white/10 xl:flex"
+          className="ml-4 hidden shrink-0 items-center gap-1.5 rounded-full border border-white/30 px-3.5 py-1.5 text-[12.5px] font-semibold text-white no-underline transition hover:bg-white/10 xl:max-[1399.98px]:flex"
         >
           <Phone className="h-4 w-4" />
           {CONTACT.phone}

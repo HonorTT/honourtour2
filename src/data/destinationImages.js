@@ -12,8 +12,15 @@
 
 const KEYWORD_IMAGES = [
   // India — hill / mountain regions
-  { keywords: ["ladakh", "leh"], image: "/uploads/destinations/darshan-chudasama-s5x1zFAuAbs-unsplash.jpg" },
-  { keywords: ["kashmir", "srinagar", "gulmarg", "pahalgam", "sonmarg", "dal lake"], image: "/uploads/destinations/anuj-yadav-1KehhzFg_Q0-unsplash.jpg" },
+  // Kashmir and Ladakh are the photos visitors know these places by: the tulip
+  // garden and Dal Lake, Gulmarg's meadow, Pangong's still water. A place named
+  // on its own gets its own photo; anything just "Kashmir" picks one of the
+  // set by name, so a row of Kashmir cards is not one photo repeated.
+  { keywords: ["ladakh", "leh", "pangong", "nubra"], image: "/uploads/destinations/darshan-chudasama-uWitPuPAzPA-unsplash.jpg" },
+  { keywords: ["srinagar", "dal lake", "tulip"], image: "/uploads/destinations/arif-khan-4hr8MStXT7s-unsplash.jpg" },
+  { keywords: ["gulmarg"], image: "/uploads/destinations/yasser-mir-Ctd--w6W-bw-unsplash.jpg" },
+  { keywords: ["sonmarg", "sonamarg"], image: "/uploads/destinations/ravi-sangar-GQX6LEHmNWI-unsplash.jpg" },
+  { keywords: ["kashmir", "pahalgam", "jammu", "doodhpathri", "gurez"], images: ["/uploads/destinations/arif-khan-4hr8MStXT7s-unsplash.jpg", "/uploads/destinations/arif-khan-CyR76QxjJhc-unsplash.jpg", "/uploads/destinations/ravi-sangar-GQX6LEHmNWI-unsplash.jpg", "/uploads/destinations/yasser-mir-Ctd--w6W-bw-unsplash.jpg"] },
   { keywords: ["himachal", "shimla", "manali", "dharamshala", "dalhousie"], image: "/uploads/destinations/praneet-kumar-H8dcf-v98mA-unsplash.jpg" },
   { keywords: ["sikkim", "darjeeling", "gangtok"], image: "/uploads/destinations/madhushree-narayan-6a3qRnmM5es-unsplash.jpg" },
 
@@ -72,6 +79,14 @@ const KEYWORD_IMAGES = [
 
 const FALLBACK_IMAGE = "/uploads/destinations/mark-olsen-K5j1KgecVC8-unsplash.jpg";
 
+/** The same text always gets the same photo from a set. */
+function pick(images, text) {
+  // FNV-1a: spreads similar names ("Kashmir for Families", "… for Women") better than a plain *31.
+  let hash = 2166136261;
+  for (let i = 0; i < text.length; i += 1) hash = Math.imul(hash ^ text.charCodeAt(i), 16777619) >>> 0;
+  return images[hash % images.length];
+}
+
 export function getDestinationImage(text) {
   if (!text) return FALLBACK_IMAGE;
 
@@ -79,7 +94,7 @@ export function getDestinationImage(text) {
 
   for (const entry of KEYWORD_IMAGES) {
     if (entry.keywords.some((word) => lower.includes(word))) {
-      return entry.image;
+      return entry.image ?? pick(entry.images, lower);
     }
   }
 
@@ -94,7 +109,7 @@ export function getDestinationImages(text) {
 
   const matches = KEYWORD_IMAGES.filter((entry) =>
     entry.keywords.some((word) => lower.includes(word)),
-  ).map((entry) => entry.image);
+  ).flatMap((entry) => entry.images ?? [entry.image]);
 
   const unique = [getDestinationImage(text), ...matches].filter(
     (image, index, all) => all.indexOf(image) === index,
